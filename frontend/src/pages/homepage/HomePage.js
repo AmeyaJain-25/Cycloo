@@ -1,10 +1,17 @@
-import { Navbar } from "reactstrap";
+import { Col, Row } from "reactstrap";
+import Sidebar from "./Sidebar";
+import Navbar from "../../components/Navbar/Navbar";
 
 const HomePage = () => {
   return (
     <div>
       <Navbar />
-      HomePage
+      <Row>
+        <Col md={4}>
+          <Sidebar />
+        </Col>
+        <Col md={8}></Col>
+      </Row>
     </div>
   );
 };
