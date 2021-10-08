@@ -7,12 +7,15 @@ import WaveBack from "../../assets/wave-bg.png";
 import BannerCycle from "../../assets/banner_cycle.png";
 import "./login.scss";
 import { authenticateUser } from "./helpers/authCalls";
+import { useHistory } from "react-router";
 
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [loading, setLoading] = useState(false);
   const [code, setCode] = useState("");
   const [codeSent, setCodeSent] = useState(false);
+
+  const history = useHistory();
 
   useEffect(() => {
     window.recaptchaVerifier = new RecaptchaVerifier(
@@ -64,6 +67,7 @@ const Login = () => {
           authenticateUser(idToken)
             .then((res) => {
               console.log("RES: ", res);
+              history.push("/");
             })
             .catch((err) => {
               console.log("ERR: ", err);
@@ -72,7 +76,6 @@ const Login = () => {
               console.log("ERR: ", err);
             });
         });
-        // ...
       })
       .catch((error) => {
         // User couldn't sign in (bad verification code?)
