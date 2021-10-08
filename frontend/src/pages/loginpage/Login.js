@@ -2,6 +2,8 @@ import { auth } from "../../utils/firebaseConfig";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "@firebase/auth";
 import { useEffect, useState } from "react";
 import { Button, Col, Form, FormGroup, Input, Row, Spinner } from "reactstrap";
+// import { ReactComponent as WaveBG } from "../../assets/wave-bg.svg";
+import WaveBack from "../../assets/wave-bg.png";
 import "./login.scss";
 
 const Login = () => {
@@ -98,7 +100,7 @@ const Login = () => {
                   <span>{loading ? <Spinner color="light" /> : "Verify"}</span>
                 </Button>
               ) : (
-                <Button className="login-btn" onClick={sendVerificationCode}>
+                <Button className="login-btn" onClick={verifyOTP}>
                   <span>{loading ? <Spinner color="light" /> : "Login"}</span>
                 </Button>
               )}
@@ -108,6 +110,8 @@ const Login = () => {
             </center>
           </Form>
         </Col>
+        <img src={WaveBack} alt="wave-bg" className="wave-bg" />
+        {/* <WaveBG /> */}
       </Row>
     </div>
   );
