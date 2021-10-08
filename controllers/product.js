@@ -1,14 +1,22 @@
 var admin = require("firebase-admin");
 const db = admin.firestore();
-const formidable = require("formidable");
-const { v4: uuidv4, v4 } = require("uuid");
 
 exports.getProductById = (req, res, next, id) => {
   db.collection("products")
     .doc(id)
     .get()
     .then((doc) => {
-      let { type, size, name, desc, photoUrl, price, productId } = doc.data();
+      let {
+        type,
+        size,
+        name,
+        desc,
+        photoUrl,
+        brakeType,
+        gear,
+        price,
+        productId,
+      } = doc.data();
 
       req.product = {
         type,
@@ -17,6 +25,8 @@ exports.getProductById = (req, res, next, id) => {
         description: desc,
         photoUrl,
         price,
+        brakeType,
+        gear,
         productId,
       };
       console.log("Document data:", doc.data());

@@ -9,9 +9,10 @@ import SearchIcon from "../../assets/Search.svg";
 import HomeIcon from "../../assets/About.svg";
 import WishListIcon from "../../assets/Group 14.svg";
 import OrdersIcon from "../../assets/Group 15.svg";
+import CartIcon from "../../assets/Cart.png";
 import DefaultUserIcon from "../../assets/user_circle.svg";
-import closeMenu from "../../assets/Vector.svg";
-import hamburgerMenu from "../../assets/Vector (1).svg";
+import CloseMenu from "../../assets/Vector.svg";
+import HamburgerMenu from "../../assets/Vector (1).svg";
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
@@ -39,7 +40,7 @@ const Navbar = () => {
           </NavLink>
           <div className="menu-icon" onClick={handleClick}>
             <img
-              src={click ? closeMenu : hamburgerMenu}
+              src={click ? CloseMenu : HamburgerMenu}
               style={{ width: "45px", height: "45px" }}
               alt=""
             />
@@ -128,6 +129,14 @@ const Navbar = () => {
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
+                <span>
+                  <img
+                    className="icon_styles"
+                    src={CartIcon}
+                    alt="Home"
+                    onClick={scrollTop}
+                  />
+                </span>{" "}
                 Cart
               </NavLink>
             </li>
