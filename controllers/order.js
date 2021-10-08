@@ -32,7 +32,7 @@ exports.getOrder = (req, res) => {
 
 exports.createOrder = (req, res) => {
   let { orderBy, status, address, amount, products } = req.body;
-  if (!orderBy || !status || !address || !amount || !products) {
+  if (!orderBy || !status || !address || !amount || products.length < 1) {
     return res.status(400).json({
       msg: "All fields are required. Fill all of them",
     });
