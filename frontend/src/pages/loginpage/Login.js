@@ -6,6 +6,7 @@ import { ReactComponent as MainIcon } from "../../assets/main_icon.svg";
 import WaveBack from "../../assets/wave-bg.png";
 import BannerCycle from "../../assets/banner_cycle.png";
 import "./login.scss";
+import { authenticateUser } from "./helpers/authCalls";
 
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -59,6 +60,18 @@ const Login = () => {
         // User signed in successfully.
         const user = result.user;
         console.log("USER: ", user);
+        auth.currentUser.getIdToken(true).then((idToken) => {
+          authenticateUser(idToken)
+            .then((res) => {
+              console.log("RES: ", res);
+            })
+            .catch((err) => {
+              console.log("ERR: ", err);
+            })
+            .catch((err) => {
+              console.log("ERR: ", err);
+            });
+        });
         // ...
       })
       .catch((error) => {

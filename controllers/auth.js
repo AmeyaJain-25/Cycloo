@@ -6,6 +6,7 @@ exports.authenticateUser = (req, res) => {
     req.headers.authorization &&
     req.headers.authorization.split(" ")[0] === "Bearer"
   ) {
+    console.log("GOT TOKEN");
     let token = req.headers.authorization.split(" ")[1];
 
     admin
