@@ -2,8 +2,9 @@ import { auth } from "../../utils/firebaseConfig";
 import { RecaptchaVerifier, signInWithPhoneNumber } from "@firebase/auth";
 import { useEffect, useState } from "react";
 import { Button, Col, Form, FormGroup, Input, Row, Spinner } from "reactstrap";
-// import { ReactComponent as WaveBG } from "../../assets/wave-bg.svg";
+import { ReactComponent as MainIcon } from "../../assets/main_icon.svg";
 import WaveBack from "../../assets/wave-bg.png";
+import BannerCycle from "../../assets/banner_cycle.png";
 import "./login.scss";
 
 const Login = () => {
@@ -72,7 +73,15 @@ const Login = () => {
   return (
     <div className="loginpage">
       <Row>
-        <Col md={6}></Col>
+        <Col md={6}>
+          <div className="hero-section">
+            <h1 className="page-title">
+              CYCL <MainIcon />
+            </h1>
+            <p className="page-sub-title">When in doubt, pedal it out!</p>
+            <img src={BannerCycle} alt="banner_cycle" />
+          </div>
+        </Col>
         <Col md={6}>
           <Form className="login-form">
             <h2 className="login-title">
@@ -110,9 +119,10 @@ const Login = () => {
             </center>
           </Form>
         </Col>
-        <img src={WaveBack} alt="wave-bg" className="wave-bg" />
+
         {/* <WaveBG /> */}
       </Row>
+      <img src={WaveBack} alt="wave-bg" className="wave-bg" />
     </div>
   );
 };

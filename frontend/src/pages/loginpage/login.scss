@@ -1,7 +1,4 @@
 .loginpage {
-  .row {
-    height: 100vh !important;
-  }
   .col-md-6 {
     margin: auto !important;
   }
@@ -45,6 +42,34 @@
     span {
       transform: scale(1.05) !important;
     }
+  }
+
+  .hero-section {
+    padding: 4em 6em !important;
+    .page-title,
+    .page-sub-title {
+      color: #224957 !important;
+      font-weight: bold;
+    }
+    .page-title {
+      font-size: 3em;
+      display: flex;
+      align-items: baseline;
+    }
+    .page-sub-title {
+      font-size: 1.2em;
+      margin-bottom: 0px !important;
+    }
+  }
+
+  .wave-bg {
+    height: 220px;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    padding: 0px !important;
+    width: 100% !important;
   }
 
   .sr-only {
