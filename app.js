@@ -17,6 +17,7 @@ const cors = require("cors");
 const app = express();
 const authRoutes = require("./routes/auth");
 const productRoutes = require("./routes/product");
+const orderRoutes = require("./routes/order");
 
 //-----------------
 //MIDDLEWARES
@@ -28,6 +29,7 @@ app.use(cors());
 //ROUTES
 app.use("/api", authRoutes);
 app.use("/api", productRoutes);
+app.use("/api", orderRoutes);
 
 //------------------
 //PORT
