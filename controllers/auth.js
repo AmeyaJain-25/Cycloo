@@ -51,10 +51,11 @@ exports.authenticateUser = (req, res) => {
           msg: "User not verified",
         });
       });
+  } else {
+    return res.status(400).json({
+      msg: "Token Not Found",
+    });
   }
-  return res.status(400).json({
-    msg: "Token Not Found",
-  });
 };
 
 exports.isSignedIn = (req, res, next) => {
