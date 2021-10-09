@@ -17,13 +17,6 @@
 
 # Features
 
-- [Create a Room](#Create-a-room-)
-- [Join a Room](#Create-a-room-)
-- [Syntax Room](#Join-a-room-)
-- [SyntaxEditor](#Code-&-Compile-)
-- [SyntaxPad](#Syntaxpad-)
-- [SyntaxChat](#Code-&-Compile-)
-
 ### Creators :zap::dizzy:
 
 <table>
