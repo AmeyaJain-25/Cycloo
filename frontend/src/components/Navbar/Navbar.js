@@ -10,8 +10,14 @@ import CartIcon from "../../assets/Cart.png";
 import Logout from "../../assets/Log Out.png";
 import CloseMenu from "../../assets/Vector.svg";
 import HamburgerMenu from "../../assets/Vector (1).svg";
+import useCart from "../../hooks/useCart";
+import { auth } from "../../utils/firebaseConfig";
+import { useHistory } from "react-router";
+import { signOut } from "firebase/auth";
+import { useAuth } from "../../hooks/useAuth";
 
 const Navbar = () => {
+  const history = useHistory();
   const [click, setClick] = useState(false);
 
   const handleClick = () => setClick(!click);
@@ -20,6 +26,9 @@ const Navbar = () => {
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const { cartCount } = useCart();
+  const { isAuthenticated } = useAuth();
 
   return (
     <>
@@ -122,13 +131,22 @@ const Navbar = () => {
                     onClick={scrollTop}
                   />
                 </span>{" "}
-                Cart
+                Cart {cartCount ? `(${cartCount})` : ""}
               </NavLink>
             </li>
-            <li className="nav-item active">
+            <li
+              className="nav-item active"
+              onClick={() => {
+                isAuthenticated
+                  ? signOut(auth).then(() => {
+                      history.push("/login");
+                    })
+                  : history.push("/login");
+              }}
+            >
               <NavLink
                 activeClassName="active-links"
-                to="/profile"
+                to="/login"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
@@ -139,8 +157,8 @@ const Navbar = () => {
                     alt="Home"
                     onClick={scrollTop}
                   />
-                </span>{" "}
-                Logout
+                </span>
+                {isAuthenticated ? "Logout" : "Login"}
               </NavLink>
             </li>
           </ul>

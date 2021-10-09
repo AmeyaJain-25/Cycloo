@@ -8,31 +8,24 @@ import ViewProductCard from "./components/ViewProductCard/ViewProductCard";
 import SignInRoute from "./components/SignInRoute";
 import PrivateRoute from "./components/PrivateRoute";
 import Orders from "./components/Orders/Orders";
-import CartItem from "./components/CartItem/CartItem";
+import { CartContextProvider } from "./hooks/useCart";
+import CartPage from "./pages/cartpage/CartPage";
 
 const Routes = () => {
   return (
     <div>
       <BrowserRouter>
         <AuthContextProvider>
-          <ToastContainer
-            position="top-center"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-          />
-          <Switch>
-            <Route exact path="/" component={HomePage} />
-            <SignInRoute exact path="/login" component={Login} />
-            <PrivateRoute exact path="/orders" component={Orders} />
-            <PrivateRoute exact path="/cart" component={CartItem} />
-            <Route path="/product/:productId" component={ViewProductCard} />
-            <Route path="/wishlist" component={ViewProductCard} />
-          </Switch>
+          <CartContextProvider>
+            <Switch>
+              <Route exact path="/" component={HomePage} />
+              <SignInRoute exact path="/login" component={Login} />
+              <PrivateRoute exact path="/orders" component={Orders} />
+              <Route exact path="/cart" component={CartPage} />
+              <Route path="/product/:productId" component={ViewProductCard} />
+              <Route path="/wishlist" component={ViewProductCard} />
+            </Switch>
+          </CartContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
     </div>

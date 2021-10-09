@@ -21,11 +21,22 @@ code {
     monospace;
 }
 
+.sr-only {
+  display: none !important;
+}
+
 p,
 h2,
 h3,
 h6 {
   margin: 0;
+}
+
+.no-products {
+  box-shadow: rgba(59, 69, 123, 0.2) 0px 2px 8px 0px;
+  padding: 1em !important;
+  width: 100% !important;
+  margin: 1em !important;
 }
 
 /* scrollbar styles */

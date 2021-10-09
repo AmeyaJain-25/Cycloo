@@ -35,9 +35,6 @@ const ProductCard = ({ product }) => {
 
   const toggleAddToWishlist = (e) => {
     e.stopPropagation();
-    if (!isAuthenticated) {
-      history.push("/login");
-    }
     if (!isPresentInWishlist(productId)) {
       addItemToWishList(product);
       setIsWishlisted(true);
@@ -53,7 +50,9 @@ const ProductCard = ({ product }) => {
       onClick={() => {
         history.push({
           pathname: `/product/${productId}`,
-          state: product,
+          state: {
+            ...product,
+          },
         });
       }}
     >

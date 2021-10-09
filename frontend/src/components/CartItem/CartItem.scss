@@ -14,10 +14,20 @@
   margin: 0 20px;
 }
 
+.item_image {
+  img {
+    width: 280px;
+    height: auto;
+    margin: 1em !important;
+  }
+}
+
 .action_btn {
   background: none;
-  padding: 8px 13px;
   border-radius: 50%;
+  width: 50px !important;
+  height: 50px !important;
+  font-size: 1.4em;
 }
 
 .feature_btn {
@@ -32,9 +42,10 @@
   background: #f4de4d;
   color: #224957;
   padding: 5px 10px;
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 600;
   border-radius: 5px;
+  margin: 0px 0.6em !important;
 }
 
 .cart_featured_action {

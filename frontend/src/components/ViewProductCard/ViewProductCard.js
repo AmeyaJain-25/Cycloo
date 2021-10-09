@@ -1,19 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import AnimatedNumber from "react-animated-number";
 import { Col, Row } from "reactstrap";
 import prodImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
 import ratings from "../../assets/Ratings.svg";
 import Navbar from "../../components/Navbar/Navbar";
+import { useAuth } from "../../hooks/useAuth";
+import useCart from "../../hooks/useCart";
 import CalorieCalc from "./CalorieCalc/CalorieCalc";
 import calorieImg from "../../assets/calories-icon-0.jpg";
 import "./ViewProductCard.scss";
 
-const ViewProductCard = props => {
+const ViewProductCard = (props) => {
   const [weight, setWeight] = useState();
   const [duration, setDuration] = useState();
   const [calBurnt, setCalBurnt] = useState(0);
 
   const {
+    productId,
     description,
     name,
     photoUrl,
@@ -36,7 +40,22 @@ const ViewProductCard = props => {
     setCalBurnt(calBurntVal);
   };
 
-  console.log(calBurnt);
+  const { addItemToCart, isPresentInCart } = useCart();
+  const history = useHistory();
+
+  const [isPresent, setIsPresent] = useState(false);
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    setIsPresent(isPresentInCart(productId));
+  }, []);
+
+  const toggleAddToCart = () => {
+    if (!isPresent) {
+      addItemToCart({ ...props.location.state, count: 1 });
+    }
+    setIsPresent(isPresentInCart(productId));
+  };
 
   return (
     <>
@@ -87,7 +106,7 @@ const ViewProductCard = props => {
                 </div>
                 <div className="addToCartDiv">
                   <div className="add_to_cart_btn">
-                    <button>Add to cart</button>
+                    <button onClick={toggleAddToCart}>Add to cart</button>
                   </div>
                 </div>
                 <div className="calorie_count_styles">
@@ -98,8 +117,8 @@ const ViewProductCard = props => {
                       style={{
                         fontSize: 50,
                       }}
-                      formatValue={n => n.toFixed(0)}
-                      frameStyle={percentage =>
+                      formatValue={(n) => n.toFixed(0)}
+                      frameStyle={(percentage) =>
                         percentage > 20 && percentage < 80
                           ? { opacity: 0.5 }
                           : {}
