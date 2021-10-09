@@ -22,7 +22,7 @@ const ViewProductCard = props => {
   return (
     <div className="prod_content">
       <div className="prod_image">
-        <img src={photoUrl || prodImg} alt="" />
+        <img src={photoUrl[0] || prodImg} alt="" />
       </div>
       <div className="prod_details">
         <p>
@@ -40,7 +40,7 @@ const ViewProductCard = props => {
         </div>
       </div>
       <div className="prod_filters">
-        <p style={{ fontWeight: "bold" }}>Select Size</p>
+        <p style={{ fontWeight: "bold" }}>Size</p>
         <div className="prod_size">
           <button>{size}</button>
           {/* <button>M</button>
