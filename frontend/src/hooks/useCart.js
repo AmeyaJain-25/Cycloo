@@ -68,6 +68,11 @@ const useCart = () => {
     if (currentCart.length) return true;
     return false;
   };
+  const emptyCart = () => {
+    localStorage.removeItem("cart");
+    setCartCount(0);
+    setCartItems([]);
+  };
   return {
     addItemToCart,
     removeItemFromCart,
@@ -75,6 +80,7 @@ const useCart = () => {
     cartCount,
     cartItems,
     setCartItems,
+    emptyCart,
   };
 };
 

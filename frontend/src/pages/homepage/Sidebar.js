@@ -14,9 +14,9 @@ const Sidebar = ({ products, setFilteredPro }) => {
     bmx: false,
   });
   const [sizes, setSizes] = useState({
-    s: false,
-    m: false,
-    l: false,
+    small: false,
+    medium: false,
+    large: false,
   });
   const [brakes, setBrakes] = useState({
     disc: false,
@@ -30,12 +30,13 @@ const Sidebar = ({ products, setFilteredPro }) => {
     let data = products;
     if (!(!types.mtb && !types.hybrid && !types.bmx)) {
       data = data.filter((pro) => {
-        let flag = false;
-        if (types.mtb) flag = pro.type.toUpperCase() === "atb".toUpperCase();
-        if (types.hybrid)
-          flag = pro.type.toUpperCase() === "hybrid".toUpperCase();
-        if (types.bmx) flag = pro.type.toUpperCase() === "bmx".toUpperCase();
-        return flag;
+        if (types.mtb && pro.type.toUpperCase() === "mtb".toUpperCase())
+          return true;
+        if (types.hybrid && pro.type.toUpperCase() === "hybrid".toUpperCase())
+          return true;
+        if (types.bmx && pro.type.toUpperCase() === "bmx".toUpperCase())
+          return true;
+        return false;
       });
     }
 
@@ -46,25 +47,26 @@ const Sidebar = ({ products, setFilteredPro }) => {
       });
     }
 
-    if (!(!sizes.s && !sizes.m && !sizes.l)) {
+    if (!(!sizes.small && !sizes.medium && !sizes.large)) {
       data = data.filter((pro) => {
-        let flag = false;
-        if (sizes.s) flag = pro.size.toUpperCase() === "s".toUpperCase();
-        if (sizes.m) flag = pro.size.toUpperCase() === "m".toUpperCase();
-        if (sizes.l) flag = pro.size.toUpperCase() === "l".toUpperCase();
-        return flag;
+        if (sizes.small && pro.size.toUpperCase() === "s".toUpperCase())
+          return true;
+        if (sizes.medium && pro.size.toUpperCase() === "m".toUpperCase())
+          return true;
+        if (sizes.large && pro.size.toUpperCase() === "l".toUpperCase())
+          return true;
+        return false;
       });
     }
     if (!(!brakes.disc && !brakes.drum && !brakes.rim)) {
       data = data.filter((pro) => {
-        let flag = false;
-        if (brakes.disc)
-          flag = pro.brakeType.toUpperCase() === "disc".toUpperCase();
-        if (brakes.drum)
-          flag = pro.brakeType.toUpperCase() === "drum".toUpperCase();
-        if (brakes.rim)
-          flag = pro.brakeType.toUpperCase() === "rim".toUpperCase();
-        return flag;
+        if (brakes.disc && pro.brakeType.toUpperCase() === "disc".toUpperCase())
+          return true;
+        if (brakes.drum && pro.brakeType.toUpperCase() === "drum".toUpperCase())
+          return true;
+        if (brakes.rim && pro.brakeType.toUpperCase() === "rim".toUpperCase())
+          return true;
+        return false;
       });
     }
     if (gearsReq) {
@@ -72,8 +74,6 @@ const Sidebar = ({ products, setFilteredPro }) => {
         return pro.gear;
       });
     }
-
-    console.log("DATA:", data);
     setFilteredPro(data);
   }, [types, sizes, brakes, gearsReq, priceRange]);
 
@@ -174,7 +174,9 @@ const Sidebar = ({ products, setFilteredPro }) => {
               <Label check>
                 <Input
                   type="checkbox"
-                  onChange={(e) => setSizes({ ...sizes, s: e.target.checked })}
+                  onChange={(e) =>
+                    setSizes({ ...sizes, small: e.target.checked })
+                  }
                 />
                 S (small)
               </Label>
@@ -183,7 +185,9 @@ const Sidebar = ({ products, setFilteredPro }) => {
               <Label check>
                 <Input
                   type="checkbox"
-                  onChange={(e) => setSizes({ ...sizes, m: e.target.checked })}
+                  onChange={(e) =>
+                    setSizes({ ...sizes, medium: e.target.checked })
+                  }
                 />
                 M (medium)
               </Label>
@@ -192,7 +196,9 @@ const Sidebar = ({ products, setFilteredPro }) => {
               <Label check>
                 <Input
                   type="checkbox"
-                  onChange={(e) => setSizes({ ...sizes, l: e.target.checked })}
+                  onChange={(e) =>
+                    setSizes({ ...sizes, large: e.target.checked })
+                  }
                 />
                 L (large)
               </Label>

@@ -24,7 +24,7 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 const CartPage = () => {
-  const { cartItems } = useCart();
+  const { cartItems, emptyCart } = useCart();
   const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -93,6 +93,8 @@ const CartPage = () => {
         })
         .then((res) => {
           console.log("RES: ", res);
+          emptyCart();
+          history.push("/orders");
         })
         .catch((err) => {
           console.log("ERR: ", err.response.data);
