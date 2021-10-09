@@ -1,0 +1,18 @@
+.star-rating-div {
+  width: fit-content !important;
+  display: flex;
+  flex-direction: row !important;
+  svg {
+    width: 14px !important;
+    height: auto !important;
+  }
+  .star-filled {
+    fill: #f90 !important;
+  }
+  .star-empty {
+    fill: #999 !important;
+  }
+  .star-disabled {
+    fill: #555 !important;
+  }
+}

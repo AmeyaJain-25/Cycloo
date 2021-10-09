@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-
+import { toast } from "react-toastify";
 import mtbImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
-import ratings from "../../assets/Ratings.svg";
 import RemoveFromCart from "../../assets/DeleteFromCart.svg";
 import SaveItem from "../../assets/Left.svg";
 import "./CartItem.scss";
 import useCart from "../../hooks/useCart";
 import { Col, Row } from "reactstrap";
+import StarRating from "../Rating/StarRating";
 
 const CartItem = ({ cartObj, setItems }) => {
   const { photoUrl, price, name, rating, discount, count } = cartObj;
@@ -31,11 +31,12 @@ const CartItem = ({ cartObj, setItems }) => {
   const removeCartItem = () => {
     removeItemFromCart(cartObj.productId);
     setItems(cartItems);
+    toast.warning(`${cartObj.name} removed from cart`);
   };
 
   return (
     <Row className="cartItem_parent">
-      <Col className="item_image">
+      <Col md={6} className="item_image">
         <img src={photoUrl[0] || mtbImg} alt="MTB" />
         <div className="cartItem_actions">
           <button
@@ -55,7 +56,7 @@ const CartItem = ({ cartObj, setItems }) => {
           </button>
         </div>
       </Col>
-      <Col className="item_details">
+      <Col md={6} className="item_details">
         <div style={{ padding: "10px 5px" }}>
           <h3>
             &#8377; {price || 12999}
@@ -63,9 +64,19 @@ const CartItem = ({ cartObj, setItems }) => {
           </h3>
           <p>{name}</p>
         </div>
-        <div className="ratings" style={{ marginBottom: "10px" }}>
-          <span>
-            <img src={ratings} alt="" />
+
+        <div
+          className="ratings"
+          style={{
+            margin: "0.4em",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <StarRating ratingCount={rating} />
+          <span style={{ fontSize: "18px", padding: "0px 0.4em" }}>
+            {rating}
           </span>
         </div>
         <div className="cart_featured_action">

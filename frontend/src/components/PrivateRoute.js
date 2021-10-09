@@ -1,4 +1,5 @@
 import { Route, Redirect } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useAuth } from "../hooks/useAuth";
 
 const PrivateRoute = ({ component: C, ...props }) => {
@@ -12,7 +13,10 @@ const PrivateRoute = ({ component: C, ...props }) => {
         ) : isAuthenticated ? (
           <C {...routeProps} />
         ) : (
-          <Redirect to="/login" />
+          <>
+            {toast.error("Not Authenticated!")}
+            <Redirect to="/login" />
+          </>
         )
       }
     />

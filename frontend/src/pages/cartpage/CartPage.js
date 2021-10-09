@@ -1,7 +1,9 @@
 import Navbar from "../../components/Navbar/Navbar";
+import { toast } from "react-toastify";
 import useCart from "../../hooks/useCart";
 import CartItem from "../../components/CartItem/CartItem";
 import { auth } from "../../utils/firebaseConfig";
+import emptyCartImg from "../../assets/empty-cart-removebg-preview.png";
 import "./cartpage.scss";
 import {
   Button,
@@ -19,6 +21,7 @@ import axios from "axios";
 import { API_URL } from "../../utils/backend";
 import { useAuth } from "../../hooks/useAuth";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const { cartItems } = useCart();
@@ -31,6 +34,7 @@ const CartPage = () => {
   const [loading, setLoading] = useState(false);
 
   const { isAuthenticated } = useAuth();
+  const [userPhoneNumber, setUserPhoneNumber] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -43,8 +47,11 @@ const CartPage = () => {
   }, [items]);
 
   useEffect(() => {
-    setItems(cartItems);
-  }, []);
+    // setItems(cartItems);
+    if (user) {
+      setUserPhoneNumber(user.phoneNumber);
+    }
+  }, [user]);
 
   const placeOrder = (e) => {
     e.preventDefault();
@@ -58,8 +65,12 @@ const CartPage = () => {
       });
     }
     // orderBy, status, address, amount, products, paymentMethod
+    if (!userPhoneNumber) {
+      return toast.error("Phone Number cannot be empty!");
+    }
+
     if (!addressText) {
-      return console.log("Address cannot be empty!");
+      return toast.error("Address cannot be empty!");
     }
     setLoading(true);
     let body = {
@@ -69,6 +80,7 @@ const CartPage = () => {
       amount: totalPrice,
       products: cartItems,
       paymentMethod: "COD",
+      contactNumber: userPhoneNumber,
     };
     auth.currentUser.getIdToken(true).then((idToken) => {
       console.log(idToken);
@@ -106,7 +118,7 @@ const CartPage = () => {
                 />
               ))}
             </Col>
-            <Col md={6}>
+            <Col md={6} style={{ marginTop: "20px" }}>
               <div className="order-form">
                 <Collapse isOpen={isOpen}>
                   <FormGroup>
@@ -165,11 +177,11 @@ const CartPage = () => {
           </Row>
         ) : (
           <div className="no-products">
-            <p>No Products found in Cart !</p>
+            <img src={emptyCartImg} alt="" />
             <Button style={{ background: "#7064e5", marginTop: "1em" }}>
-              <a href="/" style={{ textDecoration: "none", color: "#fff" }}>
+              <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
                 Shop now!
-              </a>
+              </Link>
             </Button>
           </div>
         )}

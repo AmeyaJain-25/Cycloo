@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
 import "./Navbar.scss";
 //Icons..
@@ -83,7 +84,7 @@ const Navbar = () => {
             <li className="nav-item active">
               <NavLink
                 activeClassName="active-links"
-                to="/wishlists"
+                to="/wishlist"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
@@ -139,6 +140,7 @@ const Navbar = () => {
               onClick={() => {
                 isAuthenticated
                   ? signOut(auth).then(() => {
+                      toast.warning(`Signout Success`);
                       history.push("/login");
                     })
                   : history.push("/login");

@@ -33,10 +33,12 @@ h6 {
 }
 
 .no-products {
-  box-shadow: rgba(59, 69, 123, 0.2) 0px 2px 8px 0px;
-  padding: 1em !important;
-  width: 100% !important;
-  margin: 1em !important;
+  padding: 50px;
+  width: 50%;
+  margin: 1em auto;
+  border-radius: 8px;
+  text-align: center;
+  background: #f4f6f8;
 }
 
 /* scrollbar styles */
