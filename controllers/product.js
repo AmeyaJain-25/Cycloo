@@ -11,10 +11,13 @@ exports.getProductById = (req, res, next, id) => {
         size,
         name,
         desc,
+        avgSpeed,
         photoUrl,
         brakeType,
         gear,
         price,
+        rating,
+        discount,
         productId,
       } = doc.data();
 
@@ -23,10 +26,13 @@ exports.getProductById = (req, res, next, id) => {
         size,
         name,
         description: desc,
+        avgSpeed,
         photoUrl,
         price,
         brakeType,
         gear,
+        rating,
+        discount,
         productId,
       };
       console.log("Document data:", doc.data());

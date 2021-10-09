@@ -15,12 +15,12 @@ const HomePage = () => {
   const fetchAllProducts = () => {
     setLoading(true);
     getAllProducts()
-      .then(res => {
+      .then((res) => {
         console.log("RES:", res);
         setProducts(res);
         setFilteredPro(res);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("err: ", err);
       })
       .finally(() => {
@@ -35,16 +35,18 @@ const HomePage = () => {
   return (
     <div className="homepage">
       <Navbar />
-      <Row>
-        <Col md={3}>
+      <Row className="homepageRow">
+        <Col sm={3}>
           <Sidebar products={products} setFilteredPro={setFilteredPro} />
         </Col>
-        <Col md={9} style={{ padding: "0" }}>
-          <div className="products-container">
+        <Col sm={9} style={{ padding: "0" }} className="products-container">
+          <Row>
             {!loading ? (
               filteredPro.length ? (
-                filteredPro.map(product => (
-                  <ProductCard key={product.productId} product={product} />
+                filteredPro.map((product) => (
+                  <Col lg={4}>
+                    <ProductCard key={product.productId} product={product} />
+                  </Col>
                 ))
               ) : (
                 <p>No Products Found!</p>
@@ -52,7 +54,7 @@ const HomePage = () => {
             ) : (
               <Loader />
             )}
-          </div>
+          </Row>
         </Col>
       </Row>
     </div>

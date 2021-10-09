@@ -14,15 +14,16 @@
     font-size: 1.1em;
     padding: 0.5em;
     border: 1px solid #9dc2ff;
+    cursor: pointer;
     border-radius: 10px;
     color: #7064e5;
     font-weight: bold;
-    margin: 0 28px;
+    margin: 0 5px;
   }
 
   .filter-box {
     background: #f7f7fa;
-    margin: 10px 30px;
+    margin: 10px 5px;
     padding: 1.4em 0em;
     border-radius: 10px;
 
@@ -36,7 +37,7 @@
     }
     .options {
       text-align: start;
-      width: 40% !important;
+      width: 75% !important;
       margin: auto;
       @include exclusive_font;
     }

@@ -26,7 +26,13 @@ const Navbar = () => {
 
   return (
     <>
-      <nav className="navbar" style={{ justifyContent: "space-evenly" }}>
+      <nav
+        className="navbar"
+        style={{
+          justifyContent: "space-evenly",
+          boxShadow: "rgb(17 17 26 / 5%) 0px 15px 20px",
+        }}
+      >
         <div className="navbar-container">
           <NavLink to="/" className="navbar-logo" onClick={closeMobileMenu}>
             <div className="navbar-brand">
