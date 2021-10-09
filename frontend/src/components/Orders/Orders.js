@@ -40,6 +40,7 @@ const Orders = () => {
           flexDirection: "column",
           maxWidth: "1220px",
           margin: "0em auto",
+          padding: "20px",
           width: "100%",
         }}
       >

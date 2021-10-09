@@ -8,6 +8,7 @@ import HomeIcon from "../../assets/About.svg";
 import WishListIcon from "../../assets/Group 14.svg";
 import OrdersIcon from "../../assets/Group 15.svg";
 import CartIcon from "../../assets/Cart.png";
+import Login from "../../assets/Log in.png";
 import Logout from "../../assets/Log Out.png";
 import CloseMenu from "../../assets/Vector.svg";
 import HamburgerMenu from "../../assets/Vector (1).svg";
@@ -99,24 +100,26 @@ const Navbar = () => {
                 My wishlist
               </NavLink>
             </li>
-            <li className="nav-item active">
-              <NavLink
-                activeClassName="active-links"
-                to="/orders"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                <span>
-                  <img
-                    className="icon_styles"
-                    src={OrdersIcon}
-                    alt="Home"
-                    onClick={scrollTop}
-                  />
-                </span>{" "}
-                My orders
-              </NavLink>
-            </li>
+            {isAuthenticated && (
+              <li className="nav-item active">
+                <NavLink
+                  activeClassName="active-links"
+                  to="/orders"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  <span>
+                    <img
+                      className="icon_styles"
+                      src={OrdersIcon}
+                      alt="Home"
+                      onClick={scrollTop}
+                    />
+                  </span>{" "}
+                  My orders
+                </NavLink>
+              </li>
+            )}
             <li className="nav-item active">
               <NavLink
                 activeClassName="active-links"
@@ -132,7 +135,12 @@ const Navbar = () => {
                     onClick={scrollTop}
                   />
                 </span>{" "}
-                Cart {cartCount ? `(${cartCount})` : ""}
+                Cart{" "}
+                {cartCount ? (
+                  <strong style={{ color: "#224957" }}>({cartCount})</strong>
+                ) : (
+                  ""
+                )}
               </NavLink>
             </li>
             <li
@@ -152,15 +160,31 @@ const Navbar = () => {
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
-                <span>
-                  <img
-                    className="icon_styles"
-                    src={Logout}
-                    alt="Home"
-                    onClick={scrollTop}
-                  />
-                </span>
-                {isAuthenticated ? "Logout" : "Login"}
+                {isAuthenticated ? (
+                  <>
+                    <span>
+                      <img
+                        className="icon_styles"
+                        src={Logout}
+                        alt="Home"
+                        onClick={scrollTop}
+                      />
+                    </span>
+                    Logout
+                  </>
+                ) : (
+                  <>
+                    <span>
+                      <img
+                        className="icon_styles"
+                        src={Login}
+                        alt="Home"
+                        onClick={scrollTop}
+                      />
+                    </span>
+                    Login
+                  </>
+                )}
               </NavLink>
             </li>
           </ul>
