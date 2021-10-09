@@ -100,24 +100,26 @@ const Navbar = () => {
                 My wishlist
               </NavLink>
             </li>
-            <li className="nav-item active">
-              <NavLink
-                activeClassName="active-links"
-                to="/orders"
-                className="nav-links"
-                onClick={closeMobileMenu}
-              >
-                <span>
-                  <img
-                    className="icon_styles"
-                    src={OrdersIcon}
-                    alt="Home"
-                    onClick={scrollTop}
-                  />
-                </span>{" "}
-                My orders
-              </NavLink>
-            </li>
+            {isAuthenticated && (
+              <li className="nav-item active">
+                <NavLink
+                  activeClassName="active-links"
+                  to="/orders"
+                  className="nav-links"
+                  onClick={closeMobileMenu}
+                >
+                  <span>
+                    <img
+                      className="icon_styles"
+                      src={OrdersIcon}
+                      alt="Home"
+                      onClick={scrollTop}
+                    />
+                  </span>{" "}
+                  My orders
+                </NavLink>
+              </li>
+            )}
             <li className="nav-item active">
               <NavLink
                 activeClassName="active-links"
