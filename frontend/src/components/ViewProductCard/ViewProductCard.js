@@ -1,18 +1,28 @@
 import React, { useState } from "react";
+import AnimatedNumber from "react-animated-number";
 import { Col, Row } from "reactstrap";
 import prodImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
 import ratings from "../../assets/Ratings.svg";
 import Navbar from "../../components/Navbar/Navbar";
 import CalorieCalc from "./CalorieCalc/CalorieCalc";
+import calorieImg from "../../assets/calories-icon-0.jpg";
 import "./ViewProductCard.scss";
 
-const ViewProductCard = (props) => {
+const ViewProductCard = props => {
   const [weight, setWeight] = useState();
   const [duration, setDuration] = useState();
-  const [calBurnt, setCalBurnt] = useState();
+  const [calBurnt, setCalBurnt] = useState(0);
 
-  const { description, name, photoUrl, price, size, type, metValue, avgSpeed } =
-    props.location.state;
+  const {
+    description,
+    name,
+    photoUrl,
+    price,
+    size,
+    type,
+    metValue,
+    avgSpeed,
+  } = props.location.state;
 
   console.log(props.location.state);
   //met*wt*time*3.5/200
@@ -25,6 +35,8 @@ const ViewProductCard = (props) => {
 
     setCalBurnt(calBurntVal);
   };
+
+  console.log(calBurnt);
 
   return (
     <>
@@ -58,7 +70,6 @@ const ViewProductCard = (props) => {
                     weight={weight}
                     duration={duration}
                   />
-                  <h1>{calBurnt}</h1>
                 </div>
               </Col>
               <Col className="prod_filters">
@@ -73,16 +84,28 @@ const ViewProductCard = (props) => {
                     &#8377;{price || "$9.35"}{" "}
                     <span className="discount_tag">10% OFF</span>{" "}
                   </p>
-                  <span className="discount_tag">{type}</span>{" "}
-                  <div className="ratings">
-                    <span>
-                      <img src={ratings} alt="" />
-                    </span>{" "}
-                  </div>
                 </div>
                 <div className="addToCartDiv">
                   <div className="add_to_cart_btn">
                     <button>Add to cart</button>
+                  </div>
+                </div>
+                <div className="calorie_count_styles">
+                  <img src={calorieImg} alt="" />
+                  <div>
+                    <AnimatedNumber
+                      value={calBurnt}
+                      style={{
+                        fontSize: 50,
+                      }}
+                      formatValue={n => n.toFixed(0)}
+                      frameStyle={percentage =>
+                        percentage > 20 && percentage < 80
+                          ? { opacity: 0.5 }
+                          : {}
+                      }
+                    />
+                    <span>kcal</span>
                   </div>
                 </div>
               </Col>
