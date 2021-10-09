@@ -20,7 +20,9 @@ const OrderItem = ({ order }) => {
             </div>
             <div className="order_prop">
               <h3>Order ID</h3>
-              <span className="discount_tag">{order.orderId}</span>{" "}
+              <span className="discount_tag">
+                {order.orderId.substring(0, 18)}
+              </span>{" "}
             </div>
             <div className="order_prop">
               <h3>Payment method</h3>{" "}

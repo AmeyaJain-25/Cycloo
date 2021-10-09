@@ -4,7 +4,6 @@ import { useHistory } from "react-router";
 import AnimatedNumber from "react-animated-number";
 import { Col, Row } from "reactstrap";
 import prodImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
-import ratings from "../../assets/Ratings.svg";
 import Navbar from "../../components/Navbar/Navbar";
 import { useAuth } from "../../hooks/useAuth";
 import useCart from "../../hooks/useCart";
@@ -138,7 +137,7 @@ const ViewProductCard = props => {
                           : {}
                       }
                     />
-                    <span>kcal</span>
+                    <span>cal</span>
                   </div>
                 </div>
               </Col>
