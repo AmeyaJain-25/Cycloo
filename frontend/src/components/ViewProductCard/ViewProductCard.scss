@@ -74,3 +74,15 @@
   font-size: 20px;
   background: #7064e5;
 }
+
+.calorie_count_styles {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  align-content: center;
+  margin: 3em 0;
+
+  img {
+    width: 65px;
+  }
+}

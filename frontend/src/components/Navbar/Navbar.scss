@@ -99,20 +99,6 @@
   transition: all 0.4s ease-in-out;
 }
 
-.btn-links {
-  color: var(--primary-color);
-  display: flex;
-  align-items: center;
-  text-decoration: none;
-  padding: 1rem 2.3rem;
-  height: 100%;
-  font-size: 1.1rem;
-}
-
-.btn-links:hover {
-  border-radius: 8px;
-  transition: all 0.2s ease-out;
-}
 .menu-icon {
   display: none;
 }
@@ -142,7 +128,7 @@
   }
 
   .nav-menu.active {
-    background-color: #1c1e24;
+    background-color: #f7f7fa;
     left: 0;
     transition: all 0.5s ease;
     padding: 2em 0em;
@@ -169,13 +155,6 @@
     display: table;
   }
 
-  .navbar-logo {
-    // position: absolute;
-    // top: 0;
-    // left: 0;
-    // transform: translate(20%, 30%);
-  }
-
   .menu-icon {
     display: block;
     // position: absolute;
@@ -200,7 +179,7 @@
   }
 
   .active-links {
-    color: #15cdfc;
+    color: #224957;
     background: none;
   }
 }

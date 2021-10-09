@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-
 import "./Navbar.scss";
-
 //Icons..
 import LOGO from "../../assets/LOGO.svg";
 import HomeIcon from "../../assets/About.svg";
 import WishListIcon from "../../assets/Group 14.svg";
 import OrdersIcon from "../../assets/Group 15.svg";
 import CartIcon from "../../assets/Cart.png";
-import DefaultUserIcon from "../../assets/user_circle.svg";
+import Logout from "../../assets/Log Out.png";
 import CloseMenu from "../../assets/Vector.svg";
 import HamburgerMenu from "../../assets/Vector (1).svg";
 import useCart from "../../hooks/useCart";
@@ -49,7 +47,7 @@ const Navbar = () => {
           <div className="menu-icon" onClick={handleClick}>
             <img
               src={click ? CloseMenu : HamburgerMenu}
-              style={{ width: "45px", height: "45px" }}
+              style={{ width: "35px", height: "35px", marginTop: "-20px" }}
               alt=""
             />
           </div>
@@ -140,12 +138,12 @@ const Navbar = () => {
                 <span>
                   <img
                     className="icon_styles"
-                    src={DefaultUserIcon}
+                    src={Logout}
                     alt="Home"
                     onClick={scrollTop}
                   />
                 </span>{" "}
-                User Profile
+                Logout
               </NavLink>
             </li>
           </ul>

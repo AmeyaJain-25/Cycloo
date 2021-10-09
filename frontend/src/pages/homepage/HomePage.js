@@ -5,11 +5,12 @@ import ProductCard from "../../components/ProductCard/ProductCard";
 import { getAllProducts } from "./helper/apiCalls";
 import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
-import img from "../../assets/Pink and Green Circles Biking Facebook Post.png";
-import img2 from "../../assets/Cycle Fundraising Poster.png";
 import AwesomeSlider from "react-awesome-slider";
 import CoreStyles from "react-awesome-slider/src/core/styles.scss";
 import AnimationStyles from "react-awesome-slider/src/styled/fold-out-animation/fold-out-animation.scss";
+import img1 from "../../assets/CyclooMotiveBanner.png";
+import img2 from "../../assets/InspirationBanner.png";
+import img3 from "../../assets/CyclooBanner.png";
 import "./homepage.scss";
 
 const HomePage = () => {
@@ -52,9 +53,9 @@ const HomePage = () => {
               animation="foldOutAnimation"
               cssModule={[CoreStyles, AnimationStyles]}
             >
-              <div data-src={img} />
+              <div data-src={img1} />
               <div data-src={img2} />
-              <div data-src={img} />
+              <div data-src={img3} />
             </AwesomeSlider>
           </Row>
           <Row>

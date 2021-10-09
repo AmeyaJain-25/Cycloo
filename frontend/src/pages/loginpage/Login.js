@@ -9,6 +9,7 @@ import LOGO from "../../assets/LOGO.svg";
 import "./login.scss";
 import { authenticateUser } from "./helpers/authCalls";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -23,7 +24,7 @@ const Login = () => {
       "recaptcha-container",
       {
         size: "invisible",
-        callback: (response) => {
+        callback: response => {
           // reCAPTCHA solved, allow signInWithPhoneNumber.
           //   onSignInSubmit();
           console.log("CAPTCHA SOLVED");
@@ -38,7 +39,7 @@ const Login = () => {
     const phoneNumber = "+911122334455";
     const appVerifier = window.recaptchaVerifier;
     signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-      .then((confirmationResult) => {
+      .then(confirmationResult => {
         // SMS sent. Prompt user to type the code from the message, then sign the
         // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
@@ -46,7 +47,7 @@ const Login = () => {
         setCodeSent(true);
         // ...
       })
-      .catch((error) => {
+      .catch(error => {
         // Error; SMS not sent
         console.log("ERROR: ", error);
         setCodeSent(false);
@@ -60,25 +61,25 @@ const Login = () => {
     setLoading(true);
     window.confirmationResult
       .confirm(code)
-      .then((result) => {
+      .then(result => {
         // User signed in successfully.
         const user = result.user;
         console.log("USER: ", user);
-        auth.currentUser.getIdToken(true).then((idToken) => {
+        auth.currentUser.getIdToken(true).then(idToken => {
           authenticateUser(idToken)
-            .then((res) => {
+            .then(res => {
               console.log("RES: ", res);
               history.push("/");
             })
-            .catch((err) => {
+            .catch(err => {
               console.log("ERR: ", err);
             })
-            .catch((err) => {
+            .catch(err => {
               console.log("ERR: ", err);
             });
         });
       })
-      .catch((error) => {
+      .catch(error => {
         // User couldn't sign in (bad verification code?)
         console.log("ERROR: ", error);
       })
@@ -92,7 +93,7 @@ const Login = () => {
       <Row className="loginPageRow">
         <Col md={6} className="hero-section">
           <img className="cycloo-logo" src={LOGO} alt="Cycloo" />
-          <p className="page-sub-title">When in doubt, pedal it out!</p>
+          <p className="page-sub-title">When in doubt, paddle it out!</p>
           <img src={BannerCycle} alt="banner_cycle" className="banner_cycle" />
         </Col>
         <Col md={6}>
@@ -103,7 +104,7 @@ const Login = () => {
             <FormGroup>
               <Input
                 value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                onChange={e => setPhoneNumber(e.target.value)}
                 placeholder="Enter Phone Number"
                 className="login-input"
                 disabled={codeSent}
@@ -113,7 +114,7 @@ const Login = () => {
               <Input
                 value={code}
                 disabled={!codeSent}
-                onChange={(e) => setCode(e.target.value)}
+                onChange={e => setCode(e.target.value)}
                 placeholder="Enter OTP"
                 className="login-input"
               />
@@ -130,6 +131,18 @@ const Login = () => {
             <center>
               <div id="recaptcha-container"></div>
             </center>
+            <Link
+              to="/"
+              style={{
+                textDecoration: "none",
+                color: "#224957",
+                fontFamily: "Quicksand",
+              }}
+            >
+              <p style={{ paddingTop: "10px", fontWeight: "600" }}>
+                Continue as Guest
+              </p>
+            </Link>
           </Form>
         </Col>
 
