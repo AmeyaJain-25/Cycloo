@@ -38,13 +38,13 @@ const CartPage = () => {
   const history = useHistory();
 
   useEffect(() => {
-    let itemss = items;
     let price = 0;
-    itemss.forEach((element) => {
+    cartItems.forEach((element) => {
       price = price + element.count * element.price;
+      console.log("price", element.count);
     });
     setTotalPrice(price);
-  }, [items]);
+  }, [cartItems]);
 
   useEffect(() => {
     // setItems(cartItems);
@@ -156,7 +156,7 @@ const CartPage = () => {
                           <td>{cart.name}</td>
                           <td>{cart.price}</td>
                           <td>{cart.count}</td>
-                          <td>{cart.count * parseInt(cart.price)}</td>
+                          <td>{cart.count * cart.price}</td>
                         </tr>
                       ))}
                       <tr>

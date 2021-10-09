@@ -38,7 +38,7 @@ const CartItem = ({ cartObj, setItems, isOpen }) => {
     <Row className="cartItem_parent">
       <Col md={6} className="item_image">
         <img src={photoUrl[0] || mtbImg} alt="MTB" />
-        {!isOpen && (
+        {/* {!isOpen && (
           <div className="cartItem_actions">
             <button
               className="add_item_btn"
@@ -56,7 +56,7 @@ const CartItem = ({ cartObj, setItems, isOpen }) => {
               -
             </button>
           </div>
-        )}
+        )} */}
       </Col>
       <Col md={6} className="item_details">
         <div style={{ padding: "10px 5px" }}>
