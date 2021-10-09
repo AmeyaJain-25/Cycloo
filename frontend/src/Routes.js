@@ -9,6 +9,8 @@ import PrivateRoute from "./components/PrivateRoute";
 import Orders from "./components/Orders/Orders";
 import { CartContextProvider } from "./hooks/useCart";
 import CartPage from "./pages/cartpage/CartPage";
+import WishListPage from "./pages/wishlist/WishListPage";
+import { WishListContextProvider } from "./hooks/useWishlist";
 
 const Routes = () => {
   return (
@@ -16,14 +18,16 @@ const Routes = () => {
       <BrowserRouter>
         <AuthContextProvider>
           <CartContextProvider>
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <SignInRoute exact path="/login" component={Login} />
-              <PrivateRoute exact path="/orders" component={Orders} />
-              <Route exact path="/cart" component={CartPage} />
-              <Route path="/product/:productId" component={ViewProductCard} />
-              <Route path="/wishlist" component={ViewProductCard} />
-            </Switch>
+            <WishListContextProvider>
+              <Switch>
+                <Route exact path="/" component={HomePage} />
+                <SignInRoute exact path="/login" component={Login} />
+                <PrivateRoute exact path="/orders" component={Orders} />
+                <Route exact path="/cart" component={CartPage} />
+                <Route path="/product/:productId" component={ViewProductCard} />
+                <Route path="/wishlist" component={WishListPage} />
+              </Switch>
+            </WishListContextProvider>
           </CartContextProvider>
         </AuthContextProvider>
       </BrowserRouter>
