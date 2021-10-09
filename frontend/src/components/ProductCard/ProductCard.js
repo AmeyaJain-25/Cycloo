@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
+import { toast } from "react-toastify";
 import mtbImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
 import ratings from "../../assets/Ratings.svg";
 import wishlistIcon from "../../assets/Wishlist.svg";
@@ -11,8 +12,11 @@ import "./ProductCard.scss";
 const ProductCard = ({ product }) => {
   const history = useHistory();
 
-  const { addItemToWishList, isPresentInWishlist, removeItemFromWishList } =
-    useWishlist();
+  const {
+    addItemToWishList,
+    isPresentInWishlist,
+    removeItemFromWishList,
+  } = useWishlist();
   const { isAuthenticated } = useAuth();
 
   const {
@@ -33,14 +37,16 @@ const ProductCard = ({ product }) => {
     setIsWishlisted(isPresentInWishlist(productId));
   }, []);
 
-  const toggleAddToWishlist = (e) => {
+  const toggleAddToWishlist = e => {
     e.stopPropagation();
     if (!isPresentInWishlist(productId)) {
       addItemToWishList(product);
       setIsWishlisted(true);
+      toast.success(`${product.name} added to wishlist`);
     } else {
       removeItemFromWishList(productId);
       setIsWishlisted(false);
+      toast.warning(`${product.name} removed from wishlist`);
     }
   };
 
@@ -58,7 +64,7 @@ const ProductCard = ({ product }) => {
     >
       <div className="product_card_parent">
         <div className="product_img">
-          <img src={photoUrl[0]} alt="MTB" />
+          <img src={photoUrl[0]} alt="prod_image" />
         </div>
         <div className="product_desc">
           <p>{name}</p>
