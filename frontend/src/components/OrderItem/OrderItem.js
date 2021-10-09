@@ -17,7 +17,7 @@ const OrderItem = ({ order }) => {
   const next = () => {
     if (animating) return;
     const nextIndex =
-      activeIndex === order.products.map((prod) => prod.photoUrl) - 1
+      activeIndex === order.products.map(prod => prod.photoUrl) - 1
         ? 0
         : activeIndex + 1;
     setActiveIndex(nextIndex);
@@ -27,12 +27,12 @@ const OrderItem = ({ order }) => {
     if (animating) return;
     const nextIndex =
       activeIndex === 0
-        ? order.products.map((prod) => prod.photoUrl).length - 1
+        ? order.products.map(prod => prod.photoUrl).length - 1
         : activeIndex - 1;
     setActiveIndex(nextIndex);
   };
 
-  const goToIndex = (newIndex) => {
+  const goToIndex = newIndex => {
     if (animating) return;
     setActiveIndex(newIndex);
   };
@@ -53,7 +53,9 @@ const OrderItem = ({ order }) => {
             </div>
             <div className="order_prop">
               <h3>Order ID</h3>
-              <span className="discount_tag">{order.orderId}</span>{" "}
+              <span className="discount_tag">
+                {order.orderId.substring(0, 18)}
+              </span>{" "}
             </div>
             <div className="order_prop">
               <h3>Payment method</h3>{" "}

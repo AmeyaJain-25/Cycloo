@@ -8,4 +8,10 @@
       padding: 0.6em 0px !important;
     }
   }
+  .fallback_prod_ui {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import mtbImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
+import ratings from "../../assets/Ratings.svg";
 import RemoveFromCart from "../../assets/DeleteFromCart.svg";
 import SaveItem from "../../assets/Left.svg";
 import "./CartItem.scss";
@@ -39,19 +40,19 @@ const CartItem = ({ cartObj, setItems }) => {
         <img src={photoUrl[0] || mtbImg} alt="MTB" />
         <div className="cartItem_actions">
           <button
-            className="add_item_btn"
-            onClick={() => setProductCount(productCount + 1)}
-          >
-            +
-          </button>
-          <h3 className="cartValue_action">{productCount}</h3>
-          <button
             className="remove_item_btn"
             onClick={() =>
               productCount > 1 ? setProductCount(productCount - 1) : ""
             }
           >
             -
+          </button>
+          <h3 className="cartValue_action">{productCount}</h3>
+          <button
+            className="add_item_btn"
+            onClick={() => setProductCount(productCount + 1)}
+          >
+            +
           </button>
         </div>
       </div>
@@ -61,18 +62,9 @@ const CartItem = ({ cartObj, setItems }) => {
           <span className="discount_tag">{discount || 10}% OFF</span>
         </h3>
         <p>{name}</p>
-        <div
-          className="ratings"
-          style={{
-            margin: "0.4em",
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "center",
-          }}
-        >
-          <StarRating ratingCount={rating} />
-          <span style={{ fontSize: "18px", padding: "0px 0.4em" }}>
-            {rating}
+        <div className="ratings" style={{ marginBottom: "10px" }}>
+          <span>
+            <StarRating ratingCount={cartObj.rating} />{" "}
           </span>
         </div>
         <div className="cart_featured_action">
@@ -88,14 +80,6 @@ const CartItem = ({ cartObj, setItems }) => {
               Remove
             </h6>
           </button>{" "}
-          <button className="add_to_wishlist_btn">
-            <h6>
-              <span>
-                <img src={SaveItem} alt="" style={{ margin: "0 5px" }} />
-              </span>
-              Add to Wishlist
-            </h6>
-          </button>
         </div>
       </div>
     </div>

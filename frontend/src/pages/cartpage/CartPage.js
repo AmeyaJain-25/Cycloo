@@ -3,7 +3,7 @@ import { toast } from "react-toastify";
 import useCart from "../../hooks/useCart";
 import CartItem from "../../components/CartItem/CartItem";
 import { auth } from "../../utils/firebaseConfig";
-import emptyCartImg from "../../assets/empty-cart-removebg-preview.png";
+import emptyCartImg from "../../assets/empty-cart.jpg";
 import "./cartpage.scss";
 import {
   Button,
@@ -33,6 +33,7 @@ const CartPage = () => {
 
   const { isAuthenticated } = useAuth();
   const [userPhoneNumber, setUserPhoneNumber] = useState("");
+  const [name, setName] = useState("");
   const history = useHistory();
 
   useEffect(() => {
@@ -47,7 +48,7 @@ const CartPage = () => {
   useEffect(() => {
     // setItems(cartItems);
     if (user) {
-      setUserPhoneNumber(user.phoneNumber);
+      setUserPhoneNumber(user.phoneNumber.substring(3, 13));
     }
   }, [user]);
 
@@ -62,13 +63,26 @@ const CartPage = () => {
       });
     }
     // orderBy, status, address, amount, products, paymentMethod
-    if (!userPhoneNumber) {
-      return toast.error("Phone Number cannot be empty!");
+    if (!name.trim()) {
+      return toast.error("Enter a valid name!");
     }
 
-    if (!addressText) {
+    if (name.length >= 20) {
+      return toast.error("Please a short name");
+    }
+
+    if (!userPhoneNumber.trim() || userPhoneNumber.length !== 10) {
+      return toast.error("Enter a valid phone number!");
+    }
+
+    if (!addressText.trim()) {
       return toast.error("Address cannot be empty!");
     }
+
+    if (addressText.length >= 70) {
+      return toast.error("Please enter short address");
+    }
+
     setLoading(true);
     let body = {
       orderBy: user.uid,
@@ -78,6 +92,7 @@ const CartPage = () => {
       products: cartItems,
       paymentMethod: "COD",
       contactNumber: userPhoneNumber,
+      name,
     };
     auth.currentUser.getIdToken(true).then(idToken => {
       console.log(idToken);
@@ -119,7 +134,12 @@ const CartPage = () => {
               <div className="order-form">
                 <FormGroup>
                   <Label>Name of Customer</Label>
-                  <Input type="text" placeholder="Contact Person's Name" />
+                  <Input
+                    type="text"
+                    placeholder="Contact Person's Name"
+                    value={name}
+                    onChange={e => setName(e.target.value)}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label>Contact Number</Label>
@@ -165,7 +185,9 @@ const CartPage = () => {
                     </tr>
                   </tbody>
                 </Table>
-                <div>Mode of Payment: Cash on Delivery (COD) </div>
+                <div>
+                  Mode of Payment: <strong>Cash on Delivery (COD)</strong>{" "}
+                </div>
                 <Button
                   onClick={placeOrder}
                   style={{ background: "#7064e5", marginTop: "1em" }}
@@ -177,12 +199,14 @@ const CartPage = () => {
           </Row>
         ) : (
           <div className="no-products">
-            <img src={emptyCartImg} alt="" />
-            <Button style={{ background: "#7064e5", marginTop: "1em" }}>
-              <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
-                Shop now!
-              </Link>
-            </Button>
+            <div className="fallback_prod_ui">
+              <img src={emptyCartImg} alt="" style={{ width: "100%" }} />
+              <Button style={{ background: "#7064e5", marginTop: "1em" }}>
+                <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
+                  Shop now!
+                </Link>
+              </Button>
+            </div>
           </div>
         )}
       </div>
