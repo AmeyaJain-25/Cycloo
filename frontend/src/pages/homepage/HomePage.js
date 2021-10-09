@@ -1,10 +1,11 @@
 import { Col, Row } from "reactstrap";
 import Sidebar from "./Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
-import ProductCard from "../../components/Card/ProductCard";
+import ProductCard from "../../components/ProductCard/ProductCard";
 import { getAllProducts } from "./helper/apiCalls";
 import { useEffect, useState } from "react";
 import "./homepage.scss";
+import Loader from "../../components/Loader/Loader";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -14,12 +15,12 @@ const HomePage = () => {
   const fetchAllProducts = () => {
     setLoading(true);
     getAllProducts()
-      .then((res) => {
+      .then(res => {
         console.log("RES:", res);
         setProducts(res);
         setFilteredPro(res);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("err: ", err);
       })
       .finally(() => {
@@ -38,21 +39,18 @@ const HomePage = () => {
         <Col md={3}>
           <Sidebar products={products} setFilteredPro={setFilteredPro} />
         </Col>
-        <Col md={9}>
+        <Col md={9} style={{ padding: "0" }}>
           <div className="products-container">
             {!loading ? (
               filteredPro.length ? (
-                filteredPro.map((productObj) => (
-                  <ProductCard
-                    key={productObj.productId}
-                    productObj={productObj}
-                  />
+                filteredPro.map(product => (
+                  <ProductCard key={product.productId} product={product} />
                 ))
               ) : (
                 <p>No Products Found!</p>
               )
             ) : (
-              <p>Loading...</p>
+              <Loader />
             )}
           </div>
         </Col>

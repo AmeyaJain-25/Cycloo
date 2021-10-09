@@ -8,8 +8,8 @@
     margin: auto !important;
   }
   .login-title {
-    font-weight: bold;
-    text-align: center !important;
+    font-weight: 900;
+    text-align: left !important;
     font-size: 3em !important;
     color: #224957 !important;
     .text-purple {
@@ -21,13 +21,16 @@
     margin: 1em 0px !important;
     font-size: 1.2em;
     color: #7064e5 !important;
-    background: #f4f6f8;
+    background: #f4f6f8 !important;
     border: 1px solid #7064e5;
+    padding: 12px;
     box-sizing: border-box;
     border-radius: 10px;
   }
   .login-input::placeholder {
     color: #7064e5 !important;
+    font-family: "Quicksand", "Inter", sans-serif !important;
+    font-size: 16px;
   }
   .login-btn {
     width: 100% !important;

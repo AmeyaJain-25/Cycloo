@@ -1,13 +1,13 @@
 import React from "react";
-import { Card } from "reactstrap";
-
+import { useHistory } from "react-router-dom";
 import mtbImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
 import ratings from "../../assets/Ratings.svg";
 import wishlist from "../../assets/Wishlist.svg";
 
-import "./Card.scss";
+import "./ProductCard.scss";
 
-const ProductCard = ({ productObj }) => {
+const ProductCard = ({ product }) => {
+  const history = useHistory();
   const {
     brakeType,
     description,
@@ -18,9 +18,27 @@ const ProductCard = ({ productObj }) => {
     productId,
     size,
     type,
-  } = productObj;
+  } = product;
   return (
-    <div className="card_parent">
+    <div
+      className="card_parent"
+      onClick={() => {
+        history.push({
+          pathname: `/product/${productId}`,
+          state: {
+            brakeType,
+            description,
+            gear,
+            name,
+            photoUrl,
+            price,
+            productId,
+            size,
+            type,
+          },
+        });
+      }}
+    >
       <div className="product_card_parent">
         <div className="product_img">
           <img src={photoUrl[0]} alt="MTB" />
