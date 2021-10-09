@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import mtbImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
-import ratings from "../../assets/Ratings.svg";
 import RemoveFromCart from "../../assets/DeleteFromCart.svg";
 import SaveItem from "../../assets/Left.svg";
 import "./CartItem.scss";
@@ -39,8 +38,15 @@ const CartItem = ({ cartObj, setItems, isOpen }) => {
     <Row className="cartItem_parent">
       <Col md={6} className="item_image">
         <img src={photoUrl[0] || mtbImg} alt="MTB" />
-        {!isOpen && (
+        {/* {!isOpen && (
           <div className="cartItem_actions">
+            <button
+              className="add_item_btn"
+              onClick={() => setProductCount(productCount + 1)}
+            >
+              +
+            </button>
+            <h3 className="cartValue_action">{productCount}</h3>
             <button
               className="remove_item_btn"
               onClick={() =>
@@ -49,16 +55,8 @@ const CartItem = ({ cartObj, setItems, isOpen }) => {
             >
               -
             </button>
-            <h3 className="cartValue_action">{productCount}</h3>
-            
-<button
-              className="add_item_btn"
-              onClick={() => setProductCount(productCount + 1)}
-            >
-              +
-            </button>
           </div>
-        )}
+        )} */}
       </Col>
       <Col md={6} className="item_details">
         <div style={{ padding: "10px 5px" }}>
@@ -96,6 +94,14 @@ const CartItem = ({ cartObj, setItems, isOpen }) => {
               Remove
             </h6>
           </button>{" "}
+          <button className="add_to_wishlist_btn">
+            <h6>
+              <span>
+                <img src={SaveItem} alt="" style={{ margin: "0 5px" }} />
+              </span>
+              Add to Wishlist
+            </h6>
+          </button>
         </div>
       </Col>
     </Row>
