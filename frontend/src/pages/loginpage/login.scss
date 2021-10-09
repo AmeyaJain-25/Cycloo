@@ -1,11 +1,20 @@
 .loginpage {
+  .loginPageRow {
+    max-width: 1220px;
+    margin: 0em auto;
+    width: 100%;
+  }
   .col-md-6 {
     margin: auto !important;
   }
   .login-form {
-    width: 50% !important;
+    width: 55% !important;
     padding: 1em !important;
     margin: auto !important;
+
+    @media screen and (max-width: 768px) {
+      width: 90% !important;
+    }
   }
   .login-title {
     font-weight: 900;
@@ -49,6 +58,14 @@
 
   .hero-section {
     padding: 4em 6em !important;
+    @media screen and (max-width: 768px) {
+      padding: 2em !important;
+    }
+
+    .banner_cycle {
+      width: 100%;
+    }
+
     .page-title,
     .page-sub-title {
       color: #224957 !important;
@@ -66,13 +83,17 @@
   }
 
   .wave-bg {
-    height: 220px;
+    height: 20vh;
     position: absolute;
     bottom: 0;
     right: 0;
     left: 0;
     padding: 0px !important;
     width: 100% !important;
+
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
   }
 
   .sr-only {
