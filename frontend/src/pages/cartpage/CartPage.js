@@ -1,24 +1,31 @@
 import Navbar from "../../components/Navbar/Navbar";
 import useCart from "../../hooks/useCart";
 import CartItem from "../../components/CartItem/CartItem";
+import { auth } from "../../utils/firebaseConfig";
 import "./cartpage.scss";
 import {
   Button,
   Col,
-  Form,
   FormGroup,
   Input,
   Label,
   Row,
+  Spinner,
   Table,
 } from "reactstrap";
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { API_URL } from "../../utils/backend";
+import { useAuth } from "../../hooks/useAuth";
 
 const CartPage = () => {
   const { cartItems } = useCart();
+  const { user } = useAuth();
 
   const [items, setItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
+  const [addressText, setAddressText] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     let itemss = items;
@@ -32,6 +39,43 @@ const CartPage = () => {
   useEffect(() => {
     setItems(cartItems);
   }, []);
+
+  const placeOrder = (e) => {
+    e.preventDefault();
+    console.log(user.uid);
+    // orderBy, status, address, amount, products, paymentMethod
+    if (!addressText) {
+      return console.log("Address cannot be empty!");
+    }
+    setLoading(true);
+    let body = {
+      orderBy: user.uid,
+      status: "Placed",
+      address: addressText,
+      amount: totalPrice,
+      products: cartItems,
+      paymentMethod: "COD",
+    };
+    auth.currentUser.getIdToken(true).then((idToken) => {
+      console.log(idToken);
+      axios
+        .post(`${API_URL}/order/create/${user.uid}`, body, {
+          headers: {
+            "Content-type": "application/json",
+            authorization: `Bearer ${idToken}`,
+          },
+        })
+        .then((res) => {
+          console.log("RES: ", res);
+        })
+        .catch((err) => {
+          console.log("ERR: ", err.response.data);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    });
+  };
 
   return (
     <>
@@ -49,7 +93,7 @@ const CartPage = () => {
               ))}
             </Col>
             <Col md={6}>
-              <Form className="order-form">
+              <div className="order-form">
                 <FormGroup>
                   <Label>Name of Customer</Label>
                   <Input type="text" placeholder="Contact Person's Name" />
@@ -61,6 +105,8 @@ const CartPage = () => {
                 <FormGroup>
                   <Label>Address</Label>
                   <Input
+                    value={addressText}
+                    onChange={(e) => setAddressText(e.target.value)}
                     type="textarea"
                     placeholder="Landmark, City, Pincode"
                   />
@@ -92,10 +138,13 @@ const CartPage = () => {
                   </tbody>
                 </Table>
                 <div>Mode of Payment: Cash on Delivery (COD) </div>
-                <Button style={{ background: "#7064e5", marginTop: "1em" }}>
-                  Place Order
+                <Button
+                  onClick={placeOrder}
+                  style={{ background: "#7064e5", marginTop: "1em" }}
+                >
+                  {loading ? <Spinner color="light" /> : "Place Order"}
                 </Button>
-              </Form>
+              </div>
             </Col>
           </Row>
         ) : (
