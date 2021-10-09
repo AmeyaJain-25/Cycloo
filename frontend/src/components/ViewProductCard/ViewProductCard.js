@@ -1,7 +1,7 @@
 import React from "react";
 import prodImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
 import ratings from "../../assets/Ratings.svg";
-
+import Navbar from "../../components/Navbar/Navbar";
 import "./ViewProductCard.scss";
 
 const ViewProductCard = props => {
@@ -51,9 +51,27 @@ const ViewProductCard = props => {
             &#8377;{price || "$9.35"}{" "}
             <span className="discount_tag">10% OFF</span>{" "}
           </p>
+          <span className="discount_tag">{type}</span>{" "}
+          <div className="ratings">
+            <span>
+              <img src={ratings} alt="" />
+            </span>{" "}
+          </div>
         </div>
-        <div className="add_to_cart_btn">
-          <button>Add to cart</button>
+        <div className="prod_filters">
+          <p style={{ fontWeight: "bold", fontSize: "1.2em" }}>Size</p>
+          <div className="prod_size">
+            <button>{size}</button>
+          </div>
+          <div className="prod_price">
+            <p>
+              &#8377;{price || "$9.35"}{" "}
+              <span className="discount_tag">10% OFF</span>{" "}
+            </p>
+          </div>
+          <div className="add_to_cart_btn">
+            <button>Add to cart</button>
+          </div>
         </div>
       </div>
     </div>

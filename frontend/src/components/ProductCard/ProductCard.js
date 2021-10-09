@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import mtbImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
 import ratings from "../../assets/Ratings.svg";
-import wishlist from "../../assets/Wishlist.svg";
+import wishlistIcon from "../../assets/Wishlist.svg";
+import wishlistRedIcon from "../../assets/wishlist_red.png";
+import { useAuth } from "../../hooks/useAuth";
+import useWishlist from "../../hooks/useWishlist";
 
 import "./ProductCard.scss";
 
 const ProductCard = ({ product }) => {
   const history = useHistory();
+
+  const { addItemToWishList, isPresentInWishlist, removeItemFromWishList } =
+    useWishlist();
+  const { isAuthenticated } = useAuth();
+
   const {
     brakeType,
     description,
@@ -19,6 +27,27 @@ const ProductCard = ({ product }) => {
     size,
     type,
   } = product;
+
+  const [isWishlisted, setIsWishlisted] = useState(false);
+
+  useEffect(() => {
+    setIsWishlisted(isPresentInWishlist(productId));
+  }, []);
+
+  const toggleAddToWishlist = (e) => {
+    e.stopPropagation();
+    if (!isAuthenticated) {
+      history.push("/login");
+    }
+    if (!isPresentInWishlist(productId)) {
+      addItemToWishList(product);
+      setIsWishlisted(true);
+    } else {
+      removeItemFromWishList(productId);
+      setIsWishlisted(false);
+    }
+  };
+
   return (
     <div
       className="card_parent"
@@ -53,14 +82,25 @@ const ProductCard = ({ product }) => {
           <div className="ratings">
             <span>
               <img src={ratings} alt="" />
-            </span>{" "}
+            </span>
           </div>
           <div className="add_to_wishlist">
-            <button>
-              <span>
-                <img src={wishlist} alt="" />
-              </span>
-              Watch
+            <button onClick={toggleAddToWishlist}>
+              {!isWishlisted ? (
+                <>
+                  <span>
+                    <img src={wishlistIcon} alt="wishlistIcon" />
+                  </span>
+                  Watch
+                </>
+              ) : (
+                <>
+                  <span>
+                    <img src={wishlistRedIcon} alt="wishlistIcon" />
+                  </span>
+                  Added
+                </>
+              )}
             </button>
           </div>
         </div>
