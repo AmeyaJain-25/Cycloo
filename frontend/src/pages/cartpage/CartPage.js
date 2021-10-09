@@ -17,6 +17,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "../../utils/backend";
 import { useAuth } from "../../hooks/useAuth";
+import { useHistory } from "react-router";
 
 const CartPage = () => {
   const { cartItems } = useCart();
@@ -26,6 +27,9 @@ const CartPage = () => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [addressText, setAddressText] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const { isAuthenticated } = useAuth();
+  const history = useHistory();
 
   useEffect(() => {
     let itemss = items;
@@ -42,7 +46,12 @@ const CartPage = () => {
 
   const placeOrder = (e) => {
     e.preventDefault();
-    console.log(user.uid);
+    if (!isAuthenticated) {
+      return history.push({
+        pathname: "/login",
+        state: "cart",
+      });
+    }
     // orderBy, status, address, amount, products, paymentMethod
     if (!addressText) {
       return console.log("Address cannot be empty!");

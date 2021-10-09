@@ -51,9 +51,6 @@ const ViewProductCard = (props) => {
   }, []);
 
   const toggleAddToCart = () => {
-    if (!isAuthenticated) {
-      return history.push("/login");
-    }
     if (!isPresent) {
       addItemToCart({ ...props.location.state, count: 1 });
     }
