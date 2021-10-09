@@ -29,7 +29,6 @@ const ViewProductCard = (props) => {
   } = props.location.state;
 
   console.log(props.location.state);
-  //met*wt*time*3.5/200
 
   const calculateCal = () => {
     if (!weight || !duration) {

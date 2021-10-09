@@ -6,6 +6,7 @@ import RemoveFromCart from "../../assets/DeleteFromCart.svg";
 import SaveItem from "../../assets/Left.svg";
 import "./CartItem.scss";
 import useCart from "../../hooks/useCart";
+import { Col, Row } from "reactstrap";
 
 const CartItem = ({ cartObj, setItems }) => {
   const { photoUrl, price, name, rating, discount, count } = cartObj;
@@ -33,8 +34,8 @@ const CartItem = ({ cartObj, setItems }) => {
   };
 
   return (
-    <div className="cartItem_parent">
-      <div className="item_image">
+    <Row className="cartItem_parent">
+      <Col className="item_image">
         <img src={photoUrl[0] || mtbImg} alt="MTB" />
         <div className="cartItem_actions">
           <button
@@ -53,13 +54,15 @@ const CartItem = ({ cartObj, setItems }) => {
             -
           </button>
         </div>
-      </div>
-      <div className="item_details">
-        <h3>
-          &#8377; {price || 12999}
-          <span className="discount_tag">{discount || 10}% OFF</span>
-        </h3>
-        <p>{name}</p>
+      </Col>
+      <Col className="item_details">
+        <div style={{ padding: "10px 5px" }}>
+          <h3>
+            &#8377; {price || 12999}
+            <span className="discount_tag">{discount || 10}% OFF</span>
+          </h3>
+          <p>{name}</p>
+        </div>
         <div className="ratings" style={{ marginBottom: "10px" }}>
           <span>
             <img src={ratings} alt="" />
@@ -72,7 +75,7 @@ const CartItem = ({ cartObj, setItems }) => {
                 <img
                   src={RemoveFromCart}
                   alt=""
-                  style={{ width: "21px", margin: "0px 5px", height: "28px" }}
+                  style={{ width: "21px", margin: "0px 5px" }}
                 />
               </span>
               Remove
@@ -87,8 +90,8 @@ const CartItem = ({ cartObj, setItems }) => {
             </h6>
           </button>
         </div>
-      </div>
-    </div>
+      </Col>
+    </Row>
   );
 };
 
