@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import "./Navbar.scss";
@@ -12,6 +12,7 @@ import CartIcon from "../../assets/Cart.png";
 import DefaultUserIcon from "../../assets/user_circle.svg";
 import CloseMenu from "../../assets/Vector.svg";
 import HamburgerMenu from "../../assets/Vector (1).svg";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
   const [click, setClick] = useState(false);
@@ -22,6 +23,8 @@ const Navbar = () => {
   const scrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
+  const { cartCount } = useCart();
 
   return (
     <>
@@ -124,7 +127,7 @@ const Navbar = () => {
                     onClick={scrollTop}
                   />
                 </span>{" "}
-                Cart
+                Cart {cartCount ? `(${cartCount})` : ""}
               </NavLink>
             </li>
             <li className="nav-item active">

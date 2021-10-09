@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
 import prodImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
 import ratings from "../../assets/Ratings.svg";
 import Navbar from "../../components/Navbar/Navbar";
+import { useAuth } from "../../hooks/useAuth";
+import useCart from "../../hooks/useCart";
 import "./ViewProductCard.scss";
 
-const ViewProductCard = props => {
+const ViewProductCard = (props) => {
   const {
     brakeType,
     description,
@@ -18,6 +21,26 @@ const ViewProductCard = props => {
   } = props.location.state;
 
   console.log(props.location.state);
+
+  const { addItemToCart, isPresentInCart } = useCart();
+  const history = useHistory();
+
+  const [isPresent, setIsPresent] = useState(false);
+  const { isAuthenticated } = useAuth();
+
+  useEffect(() => {
+    setIsPresent(isPresentInCart(productId));
+  }, []);
+
+  const toggleAddToCart = () => {
+    if (!isAuthenticated) {
+      return history.push("/login");
+    }
+    if (!isPresent) {
+      addItemToCart({ ...props.location.state, count: 1 });
+    }
+    setIsPresent(isPresentInCart(productId));
+  };
 
   return (
     <>
@@ -72,7 +95,9 @@ const ViewProductCard = props => {
               </p>
             </div>
             <div className="add_to_cart_btn">
-              <button>Add to cart</button>
+              <button onClick={toggleAddToCart}>
+                {isPresent ? "Added to the Cart" : "Add to Cart"}
+              </button>
             </div>
           </div>
         </div>
