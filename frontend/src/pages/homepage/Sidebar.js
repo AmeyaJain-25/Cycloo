@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Range } from "react-range";
 import { Input, Label } from "reactstrap";
+import ProductsIcon from "../../assets/filter-variant.svg";
 import "./sidebar.scss";
 
 const Sidebar = ({ products, setFilteredPro }) => {
@@ -27,7 +28,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
   useEffect(() => {
     let data = products;
     if (!(!types.mtb && !types.hybrid && !types.bmx)) {
-      data = data.filter((pro) => {
+      data = data.filter(pro => {
         let flag = false;
         if (types.mtb) flag = pro.type.toUpperCase() === "atb".toUpperCase();
         if (types.hybrid)
@@ -38,14 +39,14 @@ const Sidebar = ({ products, setFilteredPro }) => {
     }
 
     if (priceRange) {
-      data = data.filter((pro) => {
+      data = data.filter(pro => {
         let price = parseInt(pro.price);
         return price < priceRange;
       });
     }
 
     if (!(!sizes.s && !sizes.m && !sizes.l)) {
-      data = data.filter((pro) => {
+      data = data.filter(pro => {
         let flag = false;
         if (sizes.s) flag = pro.size.toUpperCase() === "s".toUpperCase();
         if (sizes.m) flag = pro.size.toUpperCase() === "m".toUpperCase();
@@ -54,7 +55,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
       });
     }
     if (!(!brakes.disc && !brakes.drum && !brakes.rim)) {
-      data = data.filter((pro) => {
+      data = data.filter(pro => {
         let flag = false;
         if (brakes.disc)
           flag = pro.brakeType.toUpperCase() === "disc".toUpperCase();
@@ -66,7 +67,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
       });
     }
     if (gearsReq) {
-      data = data.filter((pro) => {
+      data = data.filter(pro => {
         return pro.gear;
       });
     }
@@ -77,7 +78,14 @@ const Sidebar = ({ products, setFilteredPro }) => {
 
   return (
     <div className="sidebar">
-      <div className="sidebar-heading">Our Products</div>
+      <div className="sidebar-heading">
+        <img
+          src={ProductsIcon}
+          alt="Add Item"
+          style={{ width: "34px", marginTop: "-3px" }}
+        />{" "}
+        Our Products
+      </div>
       <div className="filter-box">
         <p className="filter-heading">Type</p>
         <div className="options">
@@ -85,7 +93,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
             <Label check>
               <Input
                 type="checkbox"
-                onChange={(e) => setTypes({ ...types, mtb: e.target.checked })}
+                onChange={e => setTypes({ ...types, mtb: e.target.checked })}
               />
               MTB
             </Label>
@@ -94,9 +102,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
             <Label check>
               <Input
                 type="checkbox"
-                onChange={(e) =>
-                  setTypes({ ...types, hybrid: e.target.checked })
-                }
+                onChange={e => setTypes({ ...types, hybrid: e.target.checked })}
               />
               Hybrid
             </Label>
@@ -105,7 +111,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
             <Label check>
               <Input
                 type="checkbox"
-                onChange={(e) => setTypes({ ...types, bmx: e.target.checked })}
+                onChange={e => setTypes({ ...types, bmx: e.target.checked })}
               />
               BMX
             </Label>
@@ -120,7 +126,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
             min={4000}
             max={100000}
             values={priceRange}
-            onChange={(values) => setPriceRange(values)}
+            onChange={values => setPriceRange(values)}
             renderTrack={({ props, children }) => (
               <div
                 {...props}
@@ -145,7 +151,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
                   borderRadius: "4px",
                   height: "20px",
                   width: "20px",
-                  backgroundColor: "#999",
+                  backgroundColor: "#fff",
                 }}
               />
             )}
@@ -160,7 +166,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
             <Label check>
               <Input
                 type="checkbox"
-                onChange={(e) => setSizes({ ...sizes, s: e.target.checked })}
+                onChange={e => setSizes({ ...sizes, s: e.target.checked })}
               />
               S (small)
             </Label>
@@ -169,7 +175,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
             <Label check>
               <Input
                 type="checkbox"
-                onChange={(e) => setSizes({ ...sizes, m: e.target.checked })}
+                onChange={e => setSizes({ ...sizes, m: e.target.checked })}
               />
               M (medium)
             </Label>
@@ -178,7 +184,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
             <Label check>
               <Input
                 type="checkbox"
-                onChange={(e) => setSizes({ ...sizes, l: e.target.checked })}
+                onChange={e => setSizes({ ...sizes, l: e.target.checked })}
               />
               L (large)
             </Label>
@@ -193,9 +199,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
             <Label check>
               <Input
                 type="checkbox"
-                onChange={(e) =>
-                  setBrakes({ ...brakes, disc: e.target.checked })
-                }
+                onChange={e => setBrakes({ ...brakes, disc: e.target.checked })}
               />
               Disc
             </Label>
@@ -204,9 +208,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
             <Label check>
               <Input
                 type="checkbox"
-                onChange={(e) =>
-                  setBrakes({ ...brakes, drum: e.target.checked })
-                }
+                onChange={e => setBrakes({ ...brakes, drum: e.target.checked })}
               />
               Drum
             </Label>
@@ -215,9 +217,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
             <Label check>
               <Input
                 type="checkbox"
-                onChange={(e) =>
-                  setBrakes({ ...brakes, rim: e.target.checked })
-                }
+                onChange={e => setBrakes({ ...brakes, rim: e.target.checked })}
               />
               Rim
             </Label>
@@ -232,7 +232,7 @@ const Sidebar = ({ products, setFilteredPro }) => {
             <Label check>
               <Input
                 type="checkbox"
-                onChange={(e) => setGearsReq(e.target.checked)}
+                onChange={e => setGearsReq(e.target.checked)}
               />
               Required
             </Label>

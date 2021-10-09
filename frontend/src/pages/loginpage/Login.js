@@ -5,6 +5,7 @@ import { Button, Col, Form, FormGroup, Input, Row, Spinner } from "reactstrap";
 import { ReactComponent as MainIcon } from "../../assets/main_icon.svg";
 import WaveBack from "../../assets/wave-bg.png";
 import BannerCycle from "../../assets/banner_cycle.png";
+import LOGO from "../../assets/LOGO.svg";
 import "./login.scss";
 import { authenticateUser } from "./helpers/authCalls";
 import { useHistory } from "react-router";
@@ -22,7 +23,7 @@ const Login = () => {
       "recaptcha-container",
       {
         size: "invisible",
-        callback: (response) => {
+        callback: response => {
           // reCAPTCHA solved, allow signInWithPhoneNumber.
           //   onSignInSubmit();
           console.log("CAPTCHA SOLVED");
@@ -37,7 +38,7 @@ const Login = () => {
     const phoneNumber = "+911122334455";
     const appVerifier = window.recaptchaVerifier;
     signInWithPhoneNumber(auth, phoneNumber, appVerifier)
-      .then((confirmationResult) => {
+      .then(confirmationResult => {
         // SMS sent. Prompt user to type the code from the message, then sign the
         // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
@@ -45,7 +46,7 @@ const Login = () => {
         setCodeSent(true);
         // ...
       })
-      .catch((error) => {
+      .catch(error => {
         // Error; SMS not sent
         console.log("ERROR: ", error);
         setCodeSent(false);
@@ -59,25 +60,25 @@ const Login = () => {
     setLoading(true);
     window.confirmationResult
       .confirm(code)
-      .then((result) => {
+      .then(result => {
         // User signed in successfully.
         const user = result.user;
         console.log("USER: ", user);
-        auth.currentUser.getIdToken(true).then((idToken) => {
+        auth.currentUser.getIdToken(true).then(idToken => {
           authenticateUser(idToken)
-            .then((res) => {
+            .then(res => {
               console.log("RES: ", res);
               history.push("/");
             })
-            .catch((err) => {
+            .catch(err => {
               console.log("ERR: ", err);
             })
-            .catch((err) => {
+            .catch(err => {
               console.log("ERR: ", err);
             });
         });
       })
-      .catch((error) => {
+      .catch(error => {
         // User couldn't sign in (bad verification code?)
         console.log("ERROR: ", error);
       })
@@ -91,9 +92,7 @@ const Login = () => {
       <Row>
         <Col md={6}>
           <div className="hero-section">
-            <h1 className="page-title">
-              CYCL <MainIcon />
-            </h1>
+            <img className="cycloo-logo" src={LOGO} alt="Cycloo" />
             <p className="page-sub-title">When in doubt, pedal it out!</p>
             <img src={BannerCycle} alt="banner_cycle" />
           </div>
@@ -106,7 +105,7 @@ const Login = () => {
             <FormGroup>
               <Input
                 value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
+                onChange={e => setPhoneNumber(e.target.value)}
                 placeholder="Enter Phone Number"
                 className="login-input"
                 disabled={codeSent}
@@ -116,7 +115,7 @@ const Login = () => {
               <Input
                 value={code}
                 disabled={!codeSent}
-                onChange={(e) => setCode(e.target.value)}
+                onChange={e => setCode(e.target.value)}
                 placeholder="Enter OTP"
                 className="login-input"
               />
