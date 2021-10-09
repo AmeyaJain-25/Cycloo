@@ -24,7 +24,7 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 const CartPage = () => {
-  const { cartItems } = useCart();
+  const { cartItems, emptyCart } = useCart();
   const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
 
@@ -41,8 +41,8 @@ const CartPage = () => {
   useEffect(() => {
     let itemss = items;
     let price = 0;
-    itemss.forEach(element => {
-      price = price + element.count * parseInt(element.price);
+    itemss.forEach((element) => {
+      price = price + element.count * element.price;
     });
     setTotalPrice(price);
   }, [items]);
@@ -108,6 +108,8 @@ const CartPage = () => {
         })
         .then(res => {
           console.log("RES: ", res);
+          emptyCart();
+          history.push("/orders");
         })
         .catch(err => {
           console.log("ERR: ", err.response.data);
@@ -130,6 +132,7 @@ const CartPage = () => {
                   cartObj={cartObj}
                   setItems={setItems}
                   key={cartObj.productId}
+                  isOpen={isOpen}
                 />
               ))}
             </Col>

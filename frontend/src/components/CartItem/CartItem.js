@@ -9,7 +9,7 @@ import useCart from "../../hooks/useCart";
 import { Col, Row } from "reactstrap";
 import StarRating from "../Rating/StarRating";
 
-const CartItem = ({ cartObj, setItems }) => {
+const CartItem = ({ cartObj, setItems, isOpen }) => {
   const { photoUrl, price, name, rating, discount, count } = cartObj;
   const { cartItems, setCartItems, removeItemFromCart } = useCart();
 
@@ -39,23 +39,26 @@ const CartItem = ({ cartObj, setItems }) => {
     <Row className="cartItem_parent">
       <Col md={6} className="item_image">
         <img src={photoUrl[0] || mtbImg} alt="MTB" />
-        <div className="cartItem_actions">
-          <button
-            className="remove_item_btn"
-            onClick={() =>
-              productCount > 1 ? setProductCount(productCount - 1) : ""
-            }
-          >
-            -
-          </button>
-          <h3 className="cartValue_action">{productCount}</h3>
-          <button
-            className="add_item_btn"
-            onClick={() => setProductCount(productCount + 1)}
-          >
-            +
-          </button>
-        </div>
+        {!isOpen && (
+          <div className="cartItem_actions">
+            <button
+              className="remove_item_btn"
+              onClick={() =>
+                productCount > 1 ? setProductCount(productCount - 1) : ""
+              }
+            >
+              -
+            </button>
+            <h3 className="cartValue_action">{productCount}</h3>
+            
+<button
+              className="add_item_btn"
+              onClick={() => setProductCount(productCount + 1)}
+            >
+              +
+            </button>
+          </div>
+        )}
       </Col>
       <Col md={6} className="item_details">
         <div style={{ padding: "10px 5px" }}>
