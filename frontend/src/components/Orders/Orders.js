@@ -12,6 +12,9 @@ const Orders = () => {
           justifyContent: "center",
           alignItems: "center",
           flexDirection: "column",
+          maxWidth: "1220px",
+          margin: "0em auto",
+          width: "100%",
         }}
       >
         <OrderItem />
