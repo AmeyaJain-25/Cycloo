@@ -1,4 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { app } from "./utils/firebaseConfig";
 import { AuthContextProvider } from "./hooks/useAuth";
 import Login from "./pages/loginpage/Login";
@@ -14,6 +15,16 @@ const Routes = () => {
     <div>
       <BrowserRouter>
         <AuthContextProvider>
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
           <Switch>
             <Route exact path="/" component={HomePage} />
             <SignInRoute exact path="/login" component={Login} />
