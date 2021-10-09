@@ -6,14 +6,16 @@ import wishlistIcon from "../../assets/Wishlist.svg";
 import wishlistRedIcon from "../../assets/wishlist_red.png";
 import { useAuth } from "../../hooks/useAuth";
 import useWishlist from "../../hooks/useWishlist";
-
 import "./ProductCard.scss";
 
 const ProductCard = ({ product }) => {
   const history = useHistory();
 
-  const { addItemToWishList, isPresentInWishlist, removeItemFromWishList } =
-    useWishlist();
+  const {
+    addItemToWishList,
+    isPresentInWishlist,
+    removeItemFromWishList,
+  } = useWishlist();
   const { isAuthenticated } = useAuth();
 
   const {
@@ -34,7 +36,7 @@ const ProductCard = ({ product }) => {
     setIsWishlisted(isPresentInWishlist(productId));
   }, []);
 
-  const toggleAddToWishlist = (e) => {
+  const toggleAddToWishlist = e => {
     e.stopPropagation();
     if (!isAuthenticated) {
       history.push("/login");

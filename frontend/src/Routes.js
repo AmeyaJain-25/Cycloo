@@ -5,6 +5,8 @@ import Login from "./pages/loginpage/Login";
 import HomePage from "./pages/homepage/HomePage";
 import ViewProductCard from "./components/ViewProductCard/ViewProductCard";
 import SignInRoute from "./components/SignInRoute";
+import Orders from "./components/Orders/Orders";
+import CartItem from "./components/CartItem/CartItem";
 
 const Routes = () => {
   return (
@@ -14,6 +16,8 @@ const Routes = () => {
           <Switch>
             <Route exact path="/" component={HomePage} />
             <SignInRoute exact path="/login" component={Login} />
+            <SignInRoute exact path="/orders" component={Orders} />
+            <SignInRoute exact path="/cart" component={CartItem} />
             <Route path="/product/:productId" component={ViewProductCard} />
             <Route path="/wishlist" component={ViewProductCard} />
           </Switch>

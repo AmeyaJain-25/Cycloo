@@ -5,7 +5,6 @@ import "./Navbar.scss";
 
 //Icons..
 import LOGO from "../../assets/LOGO.svg";
-import SearchIcon from "../../assets/Search.svg";
 import HomeIcon from "../../assets/About.svg";
 import WishListIcon from "../../assets/Group 14.svg";
 import OrdersIcon from "../../assets/Group 15.svg";
@@ -55,24 +54,6 @@ const Navbar = () => {
             className={click ? "nav-menu active" : "nav-menu"}
             onClick={scrollTop}
           >
-            <li className="nav-item active">
-              <img
-                style={{
-                  height: "1.7rem",
-                  marginRight: "-50px",
-                  position: "relative",
-                  marginTop: "0px",
-                }}
-                src={SearchIcon}
-                alt=""
-                onClick={scrollTop}
-              />
-              <input
-                type="text"
-                className="searchBoxStyles"
-                placeholder="Let’s search for your wheels"
-              />
-            </li>
             <li className="nav-item active">
               <NavLink
                 activeClassName="active-links"

@@ -29,9 +29,7 @@ const OrderItem = () => {
             </div>
             <div className="order_prop">
               <h3>Order status</h3>{" "}
-              <span className="discount_tag" style={{ background: "#9AFE11" }}>
-                shipped
-              </span>{" "}
+              <span className="discount_tag">shipped</span>{" "}
             </div>
           </div>
         </div>

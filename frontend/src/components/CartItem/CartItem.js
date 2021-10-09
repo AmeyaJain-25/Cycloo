@@ -6,12 +6,13 @@ import AddItem from "../../assets/AddItem.png";
 import RemoveItem from "../../assets/RemoveItem.png";
 import RemoveFromCart from "../../assets/DeleteFromCart.svg";
 import SaveItem from "../../assets/Left.svg";
-
+import Navbar from "../Navbar/Navbar";
 import "./CartItem.scss";
 
 const CartItem = () => {
   return (
     <>
+      <Navbar />
       <div className="cartItem_parent">
         <div className="item_image">
           <img src={mtbImg} alt="MTB" />
