@@ -20,6 +20,16 @@ const Routes = () => {
         <AuthContextProvider>
           <CartContextProvider>
             <WishListContextProvider>
+              <ToastContainer
+                position="top-right"
+                autoClose={3000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+              />
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <SignInRoute exact path="/login" component={Login} />

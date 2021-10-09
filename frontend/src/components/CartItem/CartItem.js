@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-
+import { toast } from "react-toastify";
 import mtbImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
 import RemoveFromCart from "../../assets/DeleteFromCart.svg";
 import SaveItem from "../../assets/Left.svg";
@@ -30,6 +30,7 @@ const CartItem = ({ cartObj, setItems }) => {
   const removeCartItem = () => {
     removeItemFromCart(cartObj.productId);
     setItems(cartItems);
+    toast.warning(`${cartObj.name} removed from cart`);
   };
 
   return (

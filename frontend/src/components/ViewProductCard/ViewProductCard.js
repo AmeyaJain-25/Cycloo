@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { useHistory } from "react-router";
 import AnimatedNumber from "react-animated-number";
 import { Col, Row } from "reactstrap";
@@ -12,7 +13,7 @@ import calorieImg from "../../assets/calories-icon-0.jpg";
 import "./ViewProductCard.scss";
 import StarRating from "../Rating/StarRating";
 
-const ViewProductCard = (props) => {
+const ViewProductCard = props => {
   const [weight, setWeight] = useState();
   const [duration, setDuration] = useState();
   const [calBurnt, setCalBurnt] = useState(0);
@@ -54,7 +55,11 @@ const ViewProductCard = (props) => {
   const toggleAddToCart = () => {
     if (!isPresent) {
       addItemToCart({ ...props.location.state, count: 1 });
+      toast.success(`Product added to cart`);
+    } else {
+      toast.warning(`Product already there in cart`);
     }
+
     setIsPresent(isPresentInCart(productId));
   };
 
@@ -127,8 +132,8 @@ const ViewProductCard = (props) => {
                       style={{
                         fontSize: 50,
                       }}
-                      formatValue={(n) => n.toFixed(0)}
-                      frameStyle={(percentage) =>
+                      formatValue={n => n.toFixed(0)}
+                      frameStyle={percentage =>
                         percentage > 20 && percentage < 80
                           ? { opacity: 0.5 }
                           : {}

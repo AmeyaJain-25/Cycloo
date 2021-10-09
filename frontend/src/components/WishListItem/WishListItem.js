@@ -1,3 +1,4 @@
+import { toast } from "react-toastify";
 import mtbImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
 import ratings from "../../assets/Ratings.svg";
 import RemoveFromCart from "../../assets/DeleteFromCart.svg";
@@ -16,6 +17,7 @@ const WishListItem = ({ wishlistObj }) => {
   const addToCart = () => {
     wishlistObj = { ...wishlistObj, count: 1 };
     addItemToCart(wishlistObj);
+    toast.success(`${wishlistObj.name} added to cart`);
   };
 
   return (
@@ -48,6 +50,7 @@ const WishListItem = ({ wishlistObj }) => {
             className="remove_from_cart_btn"
             onClick={() => {
               removeItemFromWishList(wishlistObj.productId);
+              toast.warning(`${wishlistObj.name} removed to cart`);
             }}
           >
             <h6>

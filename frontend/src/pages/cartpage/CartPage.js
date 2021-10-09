@@ -1,7 +1,9 @@
 import Navbar from "../../components/Navbar/Navbar";
+import { toast } from "react-toastify";
 import useCart from "../../hooks/useCart";
 import CartItem from "../../components/CartItem/CartItem";
 import { auth } from "../../utils/firebaseConfig";
+import emptyCartImg from "../../assets/empty-cart-removebg-preview.png";
 import "./cartpage.scss";
 import {
   Button,
@@ -18,6 +20,7 @@ import axios from "axios";
 import { API_URL } from "../../utils/backend";
 import { useAuth } from "../../hooks/useAuth";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const CartPage = () => {
   const { cartItems } = useCart();
@@ -29,23 +32,29 @@ const CartPage = () => {
   const [loading, setLoading] = useState(false);
 
   const { isAuthenticated } = useAuth();
+  const [userPhoneNumber, setUserPhoneNumber] = useState("");
   const history = useHistory();
 
   useEffect(() => {
     let itemss = items;
     let price = 0;
-    itemss.forEach((element) => {
+    itemss.forEach(element => {
       price = price + element.count * parseInt(element.price);
     });
     setTotalPrice(price);
   }, [items]);
 
   useEffect(() => {
-    setItems(cartItems);
-  }, []);
+    // setItems(cartItems);
+    if (user) {
+      setUserPhoneNumber(user.phoneNumber);
+    }
+  }, [user]);
 
-  const placeOrder = (e) => {
+  const placeOrder = e => {
     e.preventDefault();
+    console.log(user);
+
     if (!isAuthenticated) {
       return history.push({
         pathname: "/login",
@@ -53,8 +62,12 @@ const CartPage = () => {
       });
     }
     // orderBy, status, address, amount, products, paymentMethod
+    if (!userPhoneNumber) {
+      return toast.error("Phone Number cannot be empty!");
+    }
+
     if (!addressText) {
-      return console.log("Address cannot be empty!");
+      return toast.error("Address cannot be empty!");
     }
     setLoading(true);
     let body = {
@@ -64,8 +77,9 @@ const CartPage = () => {
       amount: totalPrice,
       products: cartItems,
       paymentMethod: "COD",
+      contactNumber: userPhoneNumber,
     };
-    auth.currentUser.getIdToken(true).then((idToken) => {
+    auth.currentUser.getIdToken(true).then(idToken => {
       console.log(idToken);
       axios
         .post(`${API_URL}/order/create/${user.uid}`, body, {
@@ -74,10 +88,10 @@ const CartPage = () => {
             authorization: `Bearer ${idToken}`,
           },
         })
-        .then((res) => {
+        .then(res => {
           console.log("RES: ", res);
         })
-        .catch((err) => {
+        .catch(err => {
           console.log("ERR: ", err.response.data);
         })
         .finally(() => {
@@ -93,7 +107,7 @@ const CartPage = () => {
         {cartItems.length ? (
           <Row>
             <Col md={6}>
-              {cartItems.map((cartObj) => (
+              {cartItems.map(cartObj => (
                 <CartItem
                   cartObj={cartObj}
                   setItems={setItems}
@@ -109,13 +123,18 @@ const CartPage = () => {
                 </FormGroup>
                 <FormGroup>
                   <Label>Contact Number</Label>
-                  <Input type="text" placeholder="Contact Number" />
+                  <Input
+                    type="text"
+                    placeholder="Contact Number"
+                    value={userPhoneNumber}
+                    onChange={e => setUserPhoneNumber(e.target.value)}
+                  />
                 </FormGroup>
                 <FormGroup>
                   <Label>Address</Label>
                   <Input
                     value={addressText}
-                    onChange={(e) => setAddressText(e.target.value)}
+                    onChange={e => setAddressText(e.target.value)}
                     type="textarea"
                     placeholder="Landmark, City, Pincode"
                   />
@@ -158,11 +177,11 @@ const CartPage = () => {
           </Row>
         ) : (
           <div className="no-products">
-            <p>No Products found in Cart !</p>
+            <img src={emptyCartImg} alt="" />
             <Button style={{ background: "#7064e5", marginTop: "1em" }}>
-              <a href="/" style={{ textDecoration: "none", color: "#fff" }}>
+              <Link to="/" style={{ textDecoration: "none", color: "#fff" }}>
                 Shop now!
-              </a>
+              </Link>
             </Button>
           </div>
         )}
