@@ -67,7 +67,7 @@ const HomePage = () => {
                   </Col>
                 ))
               ) : (
-                <p>No Products Found!</p>
+                <p className="no-products">No Products Found!</p>
               )
             ) : (
               <Loader />
