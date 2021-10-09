@@ -7,9 +7,27 @@ exports.getOrderById = (req, res, next, id) => {
     .doc(id)
     .get()
     .then((doc) => {
-      let { orderBy, status, address, amount, products, orderId } = doc.data();
+      let {
+        orderBy,
+        status,
+        address,
+        amount,
+        products,
+        orderId,
+        paymentMethod,
+        orderDate,
+      } = doc.data();
 
-      req.order = { orderBy, status, address, amount, products, orderId };
+      req.order = {
+        orderBy,
+        status,
+        address,
+        amount,
+        products,
+        orderId,
+        paymentMethod,
+        orderDate,
+      };
       console.log("Document data:", doc.data());
       next();
     })
@@ -31,8 +49,15 @@ exports.getOrder = (req, res) => {
 };
 
 exports.createOrder = (req, res) => {
-  let { orderBy, status, address, amount, products } = req.body;
-  if (!orderBy || !status || !address || !amount || products.length < 1) {
+  let { orderBy, status, address, amount, products, paymentMethod } = req.body;
+  if (
+    !orderBy ||
+    !status ||
+    !address ||
+    !amount ||
+    products.length < 1 ||
+    !paymentMethod
+  ) {
     return res.status(400).json({
       msg: "All fields are required. Fill all of them",
     });
@@ -46,6 +71,8 @@ exports.createOrder = (req, res) => {
     address,
     amount,
     products,
+    paymentMethod,
+    orderDate: Date.now(),
     orderId: newOrderId,
   };
 

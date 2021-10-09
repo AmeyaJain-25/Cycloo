@@ -1,5 +1,9 @@
 $exclusive_color: #224957;
-
+.card_parent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .product_card_parent {
   display: flex;
   justify-content: center;
