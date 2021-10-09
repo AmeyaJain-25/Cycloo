@@ -8,6 +8,8 @@
   padding: 35px;
   margin: 1em 0;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+  border-right: 15px solid #7064e5;
+  border-radius: 8px;
 }
 
 .order_content {
@@ -37,6 +39,8 @@
     font-size: 15px;
   }
   span {
+    background: rgba(112, 100, 229, 0.2);
+    color: rgb(39, 24, 218);
     font-size: 12px;
   }
 }
