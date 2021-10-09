@@ -36,25 +36,17 @@ const HomePage = () => {
     <div className="homepage">
       <Navbar />
       <Row className="homepageRow">
-        <Col md={3}>
+        <Col sm={3}>
           <Sidebar products={products} setFilteredPro={setFilteredPro} />
         </Col>
-        <Col md={9} style={{ padding: "0" }} className="products-container">
+        <Col sm={9} style={{ padding: "0" }} className="products-container">
           <Row>
             {!loading ? (
               filteredPro.length ? (
                 filteredPro.map((product) => (
-                  <>
-                    <Col lg={4}>
-                      <ProductCard key={product.productId} product={product} />
-                    </Col>
-                    <Col lg={4}>
-                      <ProductCard key={product.productId} product={product} />
-                    </Col>
-                    <Col lg={4}>
-                      <ProductCard key={product.productId} product={product} />
-                    </Col>
-                  </>
+                  <Col lg={4}>
+                    <ProductCard key={product.productId} product={product} />
+                  </Col>
                 ))
               ) : (
                 <p>No Products Found!</p>
