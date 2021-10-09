@@ -5,9 +5,10 @@ import SaveItem from "../../assets/Left.svg";
 import "./WishListItem.scss";
 import useCart from "../../hooks/useCart";
 import useWishlist from "../../hooks/useWishlist";
+import StarRating from "../Rating/StarRating";
 
 const WishListItem = ({ wishlistObj }) => {
-  const { photoUrl, price, name, rating, discount, count } = wishlistObj;
+  const { photoUrl, price, name, rating, discount } = wishlistObj;
 
   const { addItemToCart } = useCart();
   const { removeItemFromWishList } = useWishlist();
@@ -28,9 +29,18 @@ const WishListItem = ({ wishlistObj }) => {
           <span className="discount_tag">{discount || 10}% OFF</span>
         </h3>
         <p>{name}</p>
-        <div className="ratings" style={{ marginBottom: "10px" }}>
-          <span>
-            <img src={ratings} alt="" />
+        <div
+          className="ratings"
+          style={{
+            margin: "0.4em",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <StarRating ratingCount={rating} />
+          <span style={{ fontSize: "18px", padding: "0px 0.4em" }}>
+            {rating}
           </span>
         </div>
         <div className="cart_featured_action">
