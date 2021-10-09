@@ -7,6 +7,7 @@ import "./WishListItem.scss";
 import useCart from "../../hooks/useCart";
 import useWishlist from "../../hooks/useWishlist";
 import StarRating from "../Rating/StarRating";
+import { Col, Row } from "reactstrap";
 
 const WishListItem = ({ wishlistObj }) => {
   const { photoUrl, price, name, rating, discount } = wishlistObj;
@@ -21,15 +22,17 @@ const WishListItem = ({ wishlistObj }) => {
   };
 
   return (
-    <div className="cartItem_parent">
-      <div className="item_image">
+    <Row className="cartItem_parent">
+      <Col md={6} className="item_image">
         <img src={photoUrl[0] || mtbImg} alt="MTB" />
-      </div>
-      <div className="item_details">
-        <h3>
-          &#8377; {price || 12999}
-          <span className="discount_tag">{discount || 10}% OFF</span>
-        </h3>
+      </Col>
+      <Col md={6} className="item_details">
+        <div style={{ padding: "10px 5px" }}>
+          <h3>
+            &#8377; {price || 12999}
+            <span className="discount_tag">{discount || 10}% OFF</span>
+          </h3>
+        </div>
         <p>{name}</p>
         <div
           className="ratings"
@@ -58,7 +61,7 @@ const WishListItem = ({ wishlistObj }) => {
                 <img
                   src={RemoveFromCart}
                   alt=""
-                  style={{ width: "21px", margin: "0px 5px", height: "28px" }}
+                  style={{ width: "21px", margin: "0px 5px" }}
                 />
               </span>
               Remove
@@ -73,8 +76,8 @@ const WishListItem = ({ wishlistObj }) => {
             </h6>
           </button>
         </div>
-      </div>
-    </div>
+      </Col>
+    </Row>
   );
 };
 

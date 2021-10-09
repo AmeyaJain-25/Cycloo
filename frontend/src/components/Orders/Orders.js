@@ -40,13 +40,18 @@ const Orders = () => {
           flexDirection: "column",
           maxWidth: "1220px",
           margin: "0em auto",
+          padding: "20px",
           width: "100%",
         }}
       >
         {!loading ? (
-          orders.map((order, index) => {
-            return <OrderItem order={order} key={index} />;
-          })
+          orders.length > 0 ? (
+            orders.map((order, index) => {
+              return <OrderItem order={order} key={index} />;
+            })
+          ) : (
+            <p className="no-products">No Orders Found!</p>
+          )
         ) : (
           <Loader />
         )}
