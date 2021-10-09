@@ -17,7 +17,7 @@ const CalorieCalc = ({
           <input
             type="text"
             className="calc_input"
-            onChange={(e) => setWeight(e.target.value)}
+            onChange={e => setWeight(e.target.value)}
             value={weight}
           />
         </div>
@@ -26,7 +26,7 @@ const CalorieCalc = ({
           <input
             type="text"
             className="calc_input"
-            onChange={(e) => setDuration(e.target.value)}
+            onChange={e => setDuration(e.target.value)}
             value={duration}
           />
         </div>
