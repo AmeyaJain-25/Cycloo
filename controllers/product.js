@@ -16,6 +16,8 @@ exports.getProductById = (req, res, next, id) => {
         brakeType,
         gear,
         price,
+        rating,
+        discount,
         productId,
       } = doc.data();
 
@@ -29,6 +31,8 @@ exports.getProductById = (req, res, next, id) => {
         price,
         brakeType,
         gear,
+        rating,
+        discount,
         productId,
       };
       console.log("Document data:", doc.data());
