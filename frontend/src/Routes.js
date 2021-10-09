@@ -4,7 +4,7 @@ import { AuthContextProvider } from "./hooks/useAuth";
 import Login from "./pages/loginpage/Login";
 import HomePage from "./pages/homepage/HomePage";
 import ViewProductCard from "./components/ViewProductCard/ViewProductCard";
-import PrivateRoute from "./components/PrivateRoute";
+import SignInRoute from "./components/SignInRoute";
 
 const Routes = () => {
   return (
@@ -13,8 +13,9 @@ const Routes = () => {
         <AuthContextProvider>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route path="/login" component={Login} />
+            <SignInRoute exact path="/login" component={Login} />
             <Route path="/product/:productId" component={ViewProductCard} />
+            <Route path="/wishlist" component={ViewProductCard} />
           </Switch>
         </AuthContextProvider>
       </BrowserRouter>
