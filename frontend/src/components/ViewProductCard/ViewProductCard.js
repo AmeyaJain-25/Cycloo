@@ -114,7 +114,7 @@ const ViewProductCard = (props) => {
                 </div>
                 <div className="addToCartDiv">
                   <div className="add_to_cart_btn">
-                    <button>Add to cart</button>
+                    <button onClick={toggleAddToCart}>Add to cart</button>
                   </div>
                 </div>
               </Col>
