@@ -1,41 +1,9 @@
 import React, { useState } from "react";
-import ProductImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
 import "./OrderItem.scss";
-import {
-  Carousel,
-  CarouselItem,
-  CarouselControl,
-  CarouselIndicators,
-  CarouselCaption,
-} from "reactstrap";
 
 const OrderItem = ({ order }) => {
   console.log({ order });
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [animating, setAnimating] = useState(false);
-
-  const next = () => {
-    if (animating) return;
-    const nextIndex =
-      activeIndex === order.products.map(prod => prod.photoUrl) - 1
-        ? 0
-        : activeIndex + 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const previous = () => {
-    if (animating) return;
-    const nextIndex =
-      activeIndex === 0
-        ? order.products.map(prod => prod.photoUrl).length - 1
-        : activeIndex - 1;
-    setActiveIndex(nextIndex);
-  };
-
-  const goToIndex = newIndex => {
-    if (animating) return;
-    setActiveIndex(newIndex);
-  };
+  let date = new Date(order.orderDate).toDateString();
   return (
     <>
       <div className="orderItem_details">
@@ -48,8 +16,7 @@ const OrderItem = ({ order }) => {
           <h3>₹ {order.amount}</h3>
           <div className="order_info">
             <div className="order_prop">
-              <h3>Ordered date</h3>{" "}
-              <span className="discount_tag">{order.orderDate}</span>{" "}
+              <h3>Ordered date</h3> <span className="discount_tag">{date}</span>{" "}
             </div>
             <div className="order_prop">
               <h3>Order ID</h3>

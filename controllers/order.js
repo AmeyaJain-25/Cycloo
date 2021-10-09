@@ -49,14 +49,23 @@ exports.getOrder = (req, res) => {
 };
 
 exports.createOrder = (req, res) => {
-  let { orderBy, status, address, amount, products, paymentMethod } = req.body;
+  let {
+    orderBy,
+    status,
+    address,
+    amount,
+    products,
+    paymentMethod,
+    contactNumber,
+  } = req.body;
   if (
     !orderBy ||
     !status ||
     !address ||
     !amount ||
     products.length < 1 ||
-    !paymentMethod
+    !paymentMethod ||
+    !contactNumber
   ) {
     return res.status(400).json({
       msg: "All fields are required. Fill all of them",
@@ -72,6 +81,7 @@ exports.createOrder = (req, res) => {
     amount,
     products,
     paymentMethod,
+    contactNumber,
     orderDate: Date.now(),
     orderId: newOrderId,
   };

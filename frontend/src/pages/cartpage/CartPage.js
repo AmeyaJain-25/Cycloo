@@ -8,6 +8,7 @@ import "./cartpage.scss";
 import {
   Button,
   Col,
+  Collapse,
   FormGroup,
   Input,
   Label,
@@ -25,6 +26,7 @@ import { Link } from "react-router-dom";
 const CartPage = () => {
   const { cartItems } = useCart();
   const { user } = useAuth();
+  const [isOpen, setIsOpen] = useState(false);
 
   const [items, setItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
@@ -54,8 +56,9 @@ const CartPage = () => {
 
   const placeOrder = e => {
     e.preventDefault();
-    console.log(user);
-
+    if (!isOpen) {
+      return setIsOpen(true);
+    }
     if (!isAuthenticated) {
       return history.push({
         pathname: "/login",
@@ -130,64 +133,64 @@ const CartPage = () => {
                 />
               ))}
             </Col>
-            <Col md={6}>
+            <Col md={6} style={{ marginTop: "20px" }}>
               <div className="order-form">
-                <FormGroup>
-                  <Label>Name of Customer</Label>
-                  <Input
-                    type="text"
-                    placeholder="Contact Person's Name"
-                    value={name}
-                    onChange={e => setName(e.target.value)}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label>Contact Number</Label>
-                  <Input
-                    type="text"
-                    placeholder="Contact Number"
-                    value={userPhoneNumber}
-                    onChange={e => setUserPhoneNumber(e.target.value)}
-                  />
-                </FormGroup>
-                <FormGroup>
-                  <Label>Address</Label>
-                  <Input
-                    value={addressText}
-                    onChange={e => setAddressText(e.target.value)}
-                    type="textarea"
-                    placeholder="Landmark, City, Pincode"
-                  />
-                </FormGroup>
-                <Table style={{ margin: "2em 0px" }}>
-                  <thead>
-                    <tr>
-                      <th>Product</th>
-                      <th>Price</th>
-                      <th>Quantity</th>
-                      <th>Total</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {cartItems.map((cart, i) => (
-                      <tr key={i}>
-                        <td>{cart.name}</td>
-                        <td>{cart.price}</td>
-                        <td>{cart.count}</td>
-                        <td>{cart.count * parseInt(cart.price)}</td>
+                <Collapse isOpen={isOpen}>
+                  <FormGroup>
+                    <Label>Name of Customer</Label>
+                    <Input
+                      type="text"
+                      placeholder="Contact Person's Name"
+                      value={name}
+                      onChange={e => setName(e.target.value)}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label>Contact Number</Label>
+                    <Input
+                      type="text"
+                      placeholder="Contact Number"
+                      value={userPhoneNumber}
+                      onChange={e => setUserPhoneNumber(e.target.value)}
+                    />
+                  </FormGroup>
+                  <FormGroup>
+                    <Label>Address</Label>
+                    <Input
+                      value={addressText}
+                      onChange={e => setAddressText(e.target.value)}
+                      type="textarea"
+                      placeholder="Landmark, City, Pincode"
+                    />
+                  </FormGroup>
+                  <Table style={{ margin: "2em 0px" }}>
+                    <thead>
+                      <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
                       </tr>
-                    ))}
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <th>Grand Total</th>
-                      <th>&#8377; {totalPrice} /-</th>
-                    </tr>
-                  </tbody>
-                </Table>
-                <div>
-                  Mode of Payment: <strong>Cash on Delivery (COD)</strong>{" "}
-                </div>
+                    </thead>
+                    <tbody>
+                      {cartItems.map((cart, i) => (
+                        <tr key={i}>
+                          <td>{cart.name}</td>
+                          <td>{cart.price}</td>
+                          <td>{cart.count}</td>
+                          <td>{cart.count * parseInt(cart.price)}</td>
+                        </tr>
+                      ))}
+                      <tr>
+                        <td></td>
+                        <td></td>
+                        <th>Grand Total</th>
+                        <th>&#8377; {totalPrice} /-</th>
+                      </tr>
+                    </tbody>
+                  </Table>
+                  <div>Mode of Payment: Cash on Delivery (COD) </div>
+                </Collapse>
                 <Button
                   onClick={placeOrder}
                   style={{ background: "#7064e5", marginTop: "1em" }}

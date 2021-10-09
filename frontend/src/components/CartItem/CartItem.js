@@ -6,6 +6,7 @@ import RemoveFromCart from "../../assets/DeleteFromCart.svg";
 import SaveItem from "../../assets/Left.svg";
 import "./CartItem.scss";
 import useCart from "../../hooks/useCart";
+import { Col, Row } from "reactstrap";
 import StarRating from "../Rating/StarRating";
 
 const CartItem = ({ cartObj, setItems }) => {
@@ -35,8 +36,8 @@ const CartItem = ({ cartObj, setItems }) => {
   };
 
   return (
-    <div className="cartItem_parent">
-      <div className="item_image">
+    <Row className="cartItem_parent">
+      <Col md={6} className="item_image">
         <img src={photoUrl[0] || mtbImg} alt="MTB" />
         <div className="cartItem_actions">
           <button
@@ -55,16 +56,28 @@ const CartItem = ({ cartObj, setItems }) => {
             +
           </button>
         </div>
-      </div>
-      <div className="item_details">
-        <h3>
-          &#8377; {price || 12999}
-          <span className="discount_tag">{discount || 10}% OFF</span>
-        </h3>
-        <p>{name}</p>
-        <div className="ratings" style={{ marginBottom: "10px" }}>
-          <span>
-            <StarRating ratingCount={cartObj.rating} />{" "}
+      </Col>
+      <Col md={6} className="item_details">
+        <div style={{ padding: "10px 5px" }}>
+          <h3>
+            &#8377; {price || 12999}
+            <span className="discount_tag">{discount || 10}% OFF</span>
+          </h3>
+          <p>{name}</p>
+        </div>
+
+        <div
+          className="ratings"
+          style={{
+            margin: "0.4em",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <StarRating ratingCount={rating} />
+          <span style={{ fontSize: "18px", padding: "0px 0.4em" }}>
+            {rating}
           </span>
         </div>
         <div className="cart_featured_action">
@@ -74,15 +87,15 @@ const CartItem = ({ cartObj, setItems }) => {
                 <img
                   src={RemoveFromCart}
                   alt=""
-                  style={{ width: "21px", margin: "0px 5px", height: "28px" }}
+                  style={{ width: "21px", margin: "0px 5px" }}
                 />
               </span>
               Remove
             </h6>
           </button>{" "}
         </div>
-      </div>
-    </div>
+      </Col>
+    </Row>
   );
 };
 
