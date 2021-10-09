@@ -4,6 +4,7 @@ import mtbImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
 import ratings from "../../assets/Ratings.svg";
 import wishlistIcon from "../../assets/Wishlist.svg";
 import wishlistRedIcon from "../../assets/wishlist_red.png";
+import { useAuth } from "../../hooks/useAuth";
 import useWishlist from "../../hooks/useWishlist";
 
 import "./ProductCard.scss";
@@ -13,6 +14,7 @@ const ProductCard = ({ product }) => {
 
   const { addItemToWishList, isPresentInWishlist, removeItemFromWishList } =
     useWishlist();
+  const { isAuthenticated } = useAuth();
 
   const {
     brakeType,
@@ -34,6 +36,9 @@ const ProductCard = ({ product }) => {
 
   const toggleAddToWishlist = (e) => {
     e.stopPropagation();
+    if (!isAuthenticated) {
+      history.push("/login");
+    }
     if (!isPresentInWishlist(productId)) {
       addItemToWishList(product);
       setIsWishlisted(true);
