@@ -4,6 +4,7 @@
   align-items: center;
   border-radius: 8px;
   padding: 35px 20px;
+  margin: 20px 0px;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 }
 
@@ -16,7 +17,7 @@
 
 .item_image {
   img {
-    width: 90%;
+    width: 90% !important;
   }
 }
 
