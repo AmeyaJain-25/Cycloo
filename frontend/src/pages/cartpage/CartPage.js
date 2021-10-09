@@ -41,7 +41,7 @@ const CartPage = () => {
     let itemss = items;
     let price = 0;
     itemss.forEach((element) => {
-      price = price + element.count * parseInt(element.price);
+      price = price + element.count * element.price;
     });
     setTotalPrice(price);
   }, [items]);
@@ -117,6 +117,7 @@ const CartPage = () => {
                   cartObj={cartObj}
                   setItems={setItems}
                   key={cartObj.productId}
+                  isOpen={isOpen}
                 />
               ))}
             </Col>
