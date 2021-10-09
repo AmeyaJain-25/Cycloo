@@ -4,7 +4,6 @@
   align-items: center;
   align-content: center;
   font-family: "Inter", "Quicksand", sans-serif;
-  width: 750px;
   padding: 35px;
   margin: 1em 0;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
@@ -13,6 +12,9 @@
 }
 
 .order_content {
+  @media screen and (max-width: 768px) {
+    margin-top: 20px;
+  }
   h2 {
     font-weight: bold;
     font-size: 20px;

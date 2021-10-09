@@ -54,6 +54,7 @@ exports.createOrder = (req, res) => {
     status,
     address,
     amount,
+    name,
     products,
     paymentMethod,
     contactNumber,
@@ -63,6 +64,7 @@ exports.createOrder = (req, res) => {
     !status ||
     !address ||
     !amount ||
+    !name ||
     products.length < 1 ||
     !paymentMethod ||
     !contactNumber
@@ -79,6 +81,7 @@ exports.createOrder = (req, res) => {
     status,
     address,
     amount,
+    name,
     products,
     paymentMethod,
     contactNumber,
@@ -112,6 +115,7 @@ exports.getMyAllOrders = (req, res) => {
       let products = snapshot.docs.map((doc) => {
         return doc.data();
       });
+      products.reverse();
       return res.json(products);
     })
     .catch((error) => {

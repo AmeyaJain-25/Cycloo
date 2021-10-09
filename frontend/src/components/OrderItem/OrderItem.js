@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Col, Row } from "reactstrap";
 import "./OrderItem.scss";
 
 const OrderItem = ({ order }) => {
@@ -6,11 +7,11 @@ const OrderItem = ({ order }) => {
   let date = new Date(order.orderDate).toDateString();
   return (
     <>
-      <div className="orderItem_details">
-        <div className="ordered_prod_img">
+      <Row className="orderItem_details">
+        <Col md={6} className="ordered_prod_img">
           <img src={order.products[0].photoUrl[0]} width="90%" />
-        </div>
-        <div className="order_content">
+        </Col>
+        <Col md={6} className="order_content">
           <h2>{order.products[0].name}</h2>
           <p>{order.products[0].description}</p>
           <h3>₹ {order.amount}</h3>
@@ -31,8 +32,8 @@ const OrderItem = ({ order }) => {
               <span className="discount_tag">{order.status}</span>{" "}
             </div>
           </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </>
   );
 };
