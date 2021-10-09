@@ -11,11 +11,8 @@ import "./ProductCard.scss";
 const ProductCard = ({ product }) => {
   const history = useHistory();
 
-  const {
-    addItemToWishList,
-    isPresentInWishlist,
-    removeItemFromWishList,
-  } = useWishlist();
+  const { addItemToWishList, isPresentInWishlist, removeItemFromWishList } =
+    useWishlist();
   const { isAuthenticated } = useAuth();
 
   const {
@@ -36,7 +33,7 @@ const ProductCard = ({ product }) => {
     setIsWishlisted(isPresentInWishlist(productId));
   }, []);
 
-  const toggleAddToWishlist = e => {
+  const toggleAddToWishlist = (e) => {
     e.stopPropagation();
     if (!isAuthenticated) {
       history.push("/login");
@@ -56,17 +53,7 @@ const ProductCard = ({ product }) => {
       onClick={() => {
         history.push({
           pathname: `/product/${productId}`,
-          state: {
-            brakeType,
-            description,
-            gear,
-            name,
-            photoUrl,
-            price,
-            productId,
-            size,
-            type,
-          },
+          state: product,
         });
       }}
     >

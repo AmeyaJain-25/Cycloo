@@ -5,19 +5,13 @@
 }
 .prod_content {
   margin-top: 5em !important;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  place-items: center;
-  grid-gap: 20px;
   padding: 45px 15px;
-  // width: 900px;
   height: auto;
   border-radius: 8px;
-  // box-shadow: rgba(59, 69, 123, 0.2) 0px 2px 8px 0px;
 }
 
 .prod_image img {
-  width: 600px;
+  width: 100%;
 }
 
 .prod_name {
