@@ -5,9 +5,18 @@ $exclusive_color: #224957;
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  max-width: 500px;
-  width: 259px;
-  padding: 25px;
+  // max-width: 500px;
+  // width: 259px;
+  // padding: 25px;
+  width: fit-content;
+  // border: 1px solid $exclusive_color;
+  border-radius: 4px;
+  margin: 1em;
+  padding: 2em;
+
+  &:hover {
+    box-shadow: rgba(59, 69, 123, 0.2) 0px 2px 8px 0px;
+  }
 
   .product_img {
     img {
@@ -40,11 +49,17 @@ $exclusive_color: #224957;
   }
 
   .add_to_wishlist button {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
     color: #7064e5;
     border: 1px solid #7064e5;
     padding: 6px 9px;
     border-radius: 6px;
     background: #fff;
+    span {
+      margin-right: 0.4em;
+    }
     &:hover {
       background: #f6f5ff;
     }

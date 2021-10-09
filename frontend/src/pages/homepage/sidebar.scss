@@ -1,0 +1,51 @@
+@mixin exclusive_font {
+  font-family: "Inter", "Quicksand", sans-serif;
+}
+
+.sidebar {
+  color: #224957;
+  padding: 1em;
+  text-align: center;
+  height: 100%;
+  //   border-right: 1px solid #224957;
+
+  .sidebar-heading {
+    font-family: "Quicksand", "Inter", sans-serif;
+    font-size: 1.1em;
+    padding: 0.5em;
+    border: 1px solid #9dc2ff;
+    border-radius: 10px;
+    color: #7064e5;
+    font-weight: bold;
+    margin: 0 28px;
+  }
+
+  .filter-box {
+    background: #f7f7fa;
+    margin: 10px 30px;
+    padding: 1.4em 0em;
+    border-radius: 10px;
+
+    .filter-heading {
+      font-size: 1em;
+      padding-bottom: 0.4em;
+      margin-bottom: 0px;
+      color: #224957;
+      font-weight: bold;
+      @include exclusive_font;
+    }
+    .options {
+      text-align: start;
+      width: 40% !important;
+      margin: auto;
+      @include exclusive_font;
+    }
+    label {
+      font-size: 0.9em;
+      @include exclusive_font;
+      input {
+        margin: 0.4em !important;
+      }
+    }
+  }
+}
