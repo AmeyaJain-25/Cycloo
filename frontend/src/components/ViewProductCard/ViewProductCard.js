@@ -11,6 +11,7 @@ import useCart from "../../hooks/useCart";
 import CalorieCalc from "./CalorieCalc/CalorieCalc";
 import calorieImg from "../../assets/calories-icon-0.jpg";
 import "./ViewProductCard.scss";
+import StarRating from "../Rating/StarRating";
 
 const ViewProductCard = props => {
   const [weight, setWeight] = useState();
@@ -26,7 +27,7 @@ const ViewProductCard = props => {
     size,
     type,
     metValue,
-    avgSpeed,
+    rating,
   } = props.location.state;
 
   console.log(props.location.state);
@@ -81,10 +82,19 @@ const ViewProductCard = props => {
                     "Geekay Single Speed Mountain Bicycle Hashtag Bike |MTB Bike"}
                 </p>
                 <span className="discount_tag">{type}</span>{" "}
-                <div className="ratings">
-                  <span>
-                    <img src={ratings} alt="" />
-                  </span>{" "}
+                <div
+                  className="ratings"
+                  style={{
+                    margin: "0.4em",
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <StarRating ratingCount={rating} />
+                  <span style={{ fontSize: "18px", padding: "0px 0.4em" }}>
+                    {rating}
+                  </span>
                 </div>
                 <div>
                   <CalorieCalc
@@ -105,7 +115,7 @@ const ViewProductCard = props => {
                 </div>
                 <div className="prod_price">
                   <p>
-                    &#8377;{price || "$9.35"}{" "}
+                    &#8377;{price || "12499"}
                     <span className="discount_tag">10% OFF</span>{" "}
                   </p>
                 </div>

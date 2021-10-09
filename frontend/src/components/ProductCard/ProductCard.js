@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import mtbImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
-import ratings from "../../assets/Ratings.svg";
 import wishlistIcon from "../../assets/Wishlist.svg";
 import wishlistRedIcon from "../../assets/wishlist_red.png";
-import { useAuth } from "../../hooks/useAuth";
 import useWishlist from "../../hooks/useWishlist";
+import StarRating from "../Rating/StarRating";
 import "./ProductCard.scss";
 
 const ProductCard = ({ product }) => {
@@ -17,19 +16,8 @@ const ProductCard = ({ product }) => {
     isPresentInWishlist,
     removeItemFromWishList,
   } = useWishlist();
-  const { isAuthenticated } = useAuth();
 
-  const {
-    brakeType,
-    description,
-    gear,
-    name,
-    photoUrl,
-    price,
-    productId,
-    size,
-    type,
-  } = product;
+  const { name, photoUrl, price, productId, rating } = product;
 
   const [isWishlisted, setIsWishlisted] = useState(false);
 
@@ -64,7 +52,7 @@ const ProductCard = ({ product }) => {
     >
       <div className="product_card_parent">
         <div className="product_img">
-          <img src={photoUrl[0]} alt="prod_image" />
+          <img src={photoUrl[0] || mtbImg} alt="MTB" />
         </div>
         <div className="product_desc">
           <p>{name}</p>
@@ -73,9 +61,18 @@ const ProductCard = ({ product }) => {
           <p>&#8377; {price}</p>
         </div>
         <div className="product_actions">
-          <div className="ratings">
-            <span>
-              <img src={ratings} alt="" />
+          <div
+            className="ratings"
+            style={{
+              margin: "0.4em",
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <StarRating ratingCount={rating} />
+            <span style={{ fontSize: "18px", padding: "0px 0.4em" }}>
+              {rating}
             </span>
           </div>
           <div className="add_to_wishlist">

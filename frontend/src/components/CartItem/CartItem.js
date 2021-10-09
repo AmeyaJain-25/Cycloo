@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import mtbImg from "../../assets/Products/MTB/_R9HOXIN-removebg-preview 2.png";
-import ratings from "../../assets/Ratings.svg";
 import RemoveFromCart from "../../assets/DeleteFromCart.svg";
 import SaveItem from "../../assets/Left.svg";
 import "./CartItem.scss";
 import useCart from "../../hooks/useCart";
+import StarRating from "../Rating/StarRating";
 
 const CartItem = ({ cartObj, setItems }) => {
   const { photoUrl, price, name, rating, discount, count } = cartObj;
@@ -61,9 +61,18 @@ const CartItem = ({ cartObj, setItems }) => {
           <span className="discount_tag">{discount || 10}% OFF</span>
         </h3>
         <p>{name}</p>
-        <div className="ratings" style={{ marginBottom: "10px" }}>
-          <span>
-            <img src={ratings} alt="" />
+        <div
+          className="ratings"
+          style={{
+            margin: "0.4em",
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+          }}
+        >
+          <StarRating ratingCount={rating} />
+          <span style={{ fontSize: "18px", padding: "0px 0.4em" }}>
+            {rating}
           </span>
         </div>
         <div className="cart_featured_action">

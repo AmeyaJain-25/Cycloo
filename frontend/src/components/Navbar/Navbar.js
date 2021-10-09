@@ -84,7 +84,7 @@ const Navbar = () => {
             <li className="nav-item active">
               <NavLink
                 activeClassName="active-links"
-                to="/wishlists"
+                to="/wishlist"
                 className="nav-links"
                 onClick={closeMobileMenu}
               >
