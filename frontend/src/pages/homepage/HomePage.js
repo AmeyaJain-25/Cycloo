@@ -1,11 +1,16 @@
-import { Col, Row } from "reactstrap";
+import { Row, Col } from "reactstrap";
 import Sidebar from "./Sidebar";
 import Navbar from "../../components/Navbar/Navbar";
 import ProductCard from "../../components/ProductCard/ProductCard";
 import { getAllProducts } from "./helper/apiCalls";
 import { useEffect, useState } from "react";
-import "./homepage.scss";
 import Loader from "../../components/Loader/Loader";
+import img from "../../assets/Pink and Green Circles Biking Facebook Post.png";
+import img2 from "../../assets/Cycle Fundraising Poster.png";
+import AwesomeSlider from "react-awesome-slider";
+import CoreStyles from "react-awesome-slider/src/core/styles.scss";
+import AnimationStyles from "react-awesome-slider/src/styled/fold-out-animation/fold-out-animation.scss";
+import "./homepage.scss";
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -15,12 +20,12 @@ const HomePage = () => {
   const fetchAllProducts = () => {
     setLoading(true);
     getAllProducts()
-      .then((res) => {
+      .then(res => {
         console.log("RES:", res);
         setProducts(res);
         setFilteredPro(res);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log("err: ", err);
       })
       .finally(() => {
@@ -40,10 +45,22 @@ const HomePage = () => {
           <Sidebar products={products} setFilteredPro={setFilteredPro} />
         </Col>
         <Col sm={9} style={{ padding: "0" }} className="products-container">
+          <Row style={{ margin: "2em 0" }}>
+            <AwesomeSlider
+              interval={5000}
+              style={{ height: "350px" }}
+              animation="foldOutAnimation"
+              cssModule={[CoreStyles, AnimationStyles]}
+            >
+              <div data-src={img} />
+              <div data-src={img2} />
+              <div data-src={img} />
+            </AwesomeSlider>
+          </Row>
           <Row>
             {!loading ? (
               filteredPro.length ? (
-                filteredPro.map((product) => (
+                filteredPro.map(product => (
                   <Col lg={4}>
                     <ProductCard key={product.productId} product={product} />
                   </Col>

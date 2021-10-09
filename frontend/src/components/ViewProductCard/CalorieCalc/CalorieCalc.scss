@@ -1,0 +1,47 @@
+.calDiv {
+  background: #f4f6f8;
+  border-radius: 8px;
+  padding: 20px 10px;
+  margin-top: 2em;
+}
+
+.calorie_content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.calc_submit button {
+  font-size: 20px;
+  background: #f4de4d;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  margin-top: 20px;
+  padding: 5px 10px;
+  color: rgba(34, 73, 87, 0.87);
+}
+.calc {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-top: 2px;
+
+  h1 {
+    font-size: 15px;
+    color: rgba(34, 73, 87, 0.87);
+  }
+  input {
+    color: rgba(10, 47, 61, 0.87);
+    padding: 0px 5px;
+    background: #ffffff;
+    border: 1px solid #7064e5;
+    box-sizing: border-box;
+    border-radius: 8px;
+    max-width: 85px;
+    font-size: 20px;
+  }
+}
