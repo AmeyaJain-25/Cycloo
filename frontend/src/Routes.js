@@ -1,4 +1,5 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import { app } from "./utils/firebaseConfig";
 import { AuthContextProvider } from "./hooks/useAuth";
 import Login from "./pages/loginpage/Login";
