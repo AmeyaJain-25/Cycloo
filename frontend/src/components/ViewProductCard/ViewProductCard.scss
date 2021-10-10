@@ -28,6 +28,12 @@
   font-size: 12px;
   font-weight: 600;
   border-radius: 5px;
+
+  // @media screen and (max-width: 600px) {
+  //   .discount_tag {
+  //     font-size: 10px;
+  //   }
+  // }
 }
 
 .rightCol {
@@ -38,7 +44,8 @@
 
 .prod_details,
 .prod_filters {
-  padding: 20px;
+  padding: 15px 0;
+  margin: 0 3px;
 }
 .prod_size {
   display: flex;

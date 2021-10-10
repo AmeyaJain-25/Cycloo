@@ -3,13 +3,16 @@ import { Col, Row } from "reactstrap";
 import "./OrderItem.scss";
 
 const OrderItem = ({ order }) => {
-  console.log({ order });
   let date = new Date(order.orderDate).toDateString();
   return (
     <>
       <Row className="orderItem_details">
         <Col md={6} className="ordered_prod_img">
-          <img src={order.products[0].photoUrl[0]} width="90%" />
+          <img
+            src={order.products[0].photoUrl[0]}
+            width="90%"
+            alt="prod_image"
+          />
         </Col>
         <Col md={6} className="order_content">
           <h2>{order.products[0].name}</h2>
