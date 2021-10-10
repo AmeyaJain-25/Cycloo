@@ -40,7 +40,7 @@ const CartPage = () => {
 
   useEffect(() => {
     let price = 0;
-    cartItems.forEach((element) => {
+    cartItems.forEach(element => {
       price = price + element.count * element.price;
       console.log("price", element.count);
     });
@@ -109,6 +109,7 @@ const CartPage = () => {
         .then(res => {
           console.log("RES: ", res);
           emptyCart();
+          toast.success("Order Succesfully dispatched!");
           history.push("/orders");
         })
         .catch(err => {

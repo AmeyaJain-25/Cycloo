@@ -94,14 +94,6 @@ const CartItem = ({ cartObj, setItems, isOpen }) => {
               Remove
             </h6>
           </button>{" "}
-          <button className="add_to_wishlist_btn">
-            <h6>
-              <span>
-                <img src={SaveItem} alt="" style={{ margin: "0 5px" }} />
-              </span>
-              Add to Wishlist
-            </h6>
-          </button>
         </div>
       </Col>
     </Row>
