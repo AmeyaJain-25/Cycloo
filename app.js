@@ -1,9 +1,10 @@
+require("dotenv").config();
 //-----------------
 //FIREBASE SETUP
 var admin = require("firebase-admin");
-
+const config = require("./config/firebaseService.js").config;
 //Firebase Service Key
-var serviceAccount = require("./util/serviceAccountKey.json");
+const serviceAccount = JSON.parse(JSON.stringify(config));
 
 //Firebase Initialize App
 admin.initializeApp({
