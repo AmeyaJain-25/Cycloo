@@ -7,7 +7,7 @@ const SignInRoute = ({ component: C, ...props }) => {
   return (
     <Route
       {...props}
-      render={(routeProps) =>
+      render={routeProps =>
         loadingAuth ? (
           <p>Loading</p>
         ) : !isAuthenticated ? (
