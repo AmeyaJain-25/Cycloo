@@ -3,11 +3,10 @@ import { useAuth } from "../hooks/useAuth";
 
 const SignInRoute = ({ component: C, ...props }) => {
   const { isAuthenticated, loadingAuth } = useAuth();
-  console.log("AUTH", isAuthenticated);
   return (
     <Route
       {...props}
-      render={routeProps =>
+      render={(routeProps) =>
         loadingAuth ? (
           <p>Loading</p>
         ) : !isAuthenticated ? (

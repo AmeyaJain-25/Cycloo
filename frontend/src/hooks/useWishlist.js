@@ -29,7 +29,6 @@ const useWishlist = () => {
       : [];
     currentWishList = [...currentWishList, item];
     localStorage.setItem("wishlist", JSON.stringify(currentWishList));
-    console.log("Added to wishlist");
     setWishItems(currentWishList);
     return "Added to wishlist";
   };

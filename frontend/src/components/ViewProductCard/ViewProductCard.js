@@ -12,7 +12,7 @@ import calorieImg from "../../assets/calories-icon-0.jpg";
 import "./ViewProductCard.scss";
 import StarRating from "../Rating/StarRating";
 
-const ViewProductCard = props => {
+const ViewProductCard = (props) => {
   const [weight, setWeight] = useState();
   const [duration, setDuration] = useState();
   const [calBurnt, setCalBurnt] = useState(0);
@@ -28,8 +28,6 @@ const ViewProductCard = props => {
     metValue,
     rating,
   } = props.location.state;
-
-  console.log(props.location.state);
 
   const calculateCal = () => {
     if (!weight || !duration) {
@@ -130,8 +128,8 @@ const ViewProductCard = props => {
                       style={{
                         fontSize: 50,
                       }}
-                      formatValue={n => n.toFixed(0)}
-                      frameStyle={percentage =>
+                      formatValue={(n) => n.toFixed(0)}
+                      frameStyle={(percentage) =>
                         percentage > 20 && percentage < 80
                           ? { opacity: 0.5 }
                           : {}

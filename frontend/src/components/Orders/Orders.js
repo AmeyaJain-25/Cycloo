@@ -14,7 +14,6 @@ const Orders = () => {
     setLoading(true);
     getMyAllOrders(user.uid, user.accessToken)
       .then((res) => {
-        console.log("RES:", res);
         setOrders(res);
       })
       .catch((err) => {

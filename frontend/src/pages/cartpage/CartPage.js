@@ -40,9 +40,8 @@ const CartPage = () => {
 
   useEffect(() => {
     let price = 0;
-    cartItems.forEach(element => {
+    cartItems.forEach((element) => {
       price = price + element.count * element.price;
-      console.log("price", element.count);
     });
     setTotalPrice(price);
   }, [cartItems]);
@@ -54,7 +53,7 @@ const CartPage = () => {
     }
   }, [user]);
 
-  const placeOrder = e => {
+  const placeOrder = (e) => {
     e.preventDefault();
     if (!isOpen) {
       return setIsOpen(true);
@@ -97,8 +96,7 @@ const CartPage = () => {
       contactNumber: userPhoneNumber,
       name,
     };
-    auth.currentUser.getIdToken(true).then(idToken => {
-      console.log(idToken);
+    auth.currentUser.getIdToken(true).then((idToken) => {
       axios
         .post(`${API_URL}/order/create/${user.uid}`, body, {
           headers: {
@@ -106,13 +104,12 @@ const CartPage = () => {
             authorization: `Bearer ${idToken}`,
           },
         })
-        .then(res => {
-          console.log("RES: ", res);
+        .then((res) => {
           emptyCart();
           toast.success("Order Succesfully dispatched!");
           history.push("/orders");
         })
-        .catch(err => {
+        .catch((err) => {
           console.log("ERR: ", err.response.data);
         })
         .finally(() => {
@@ -128,7 +125,7 @@ const CartPage = () => {
         {cartItems.length ? (
           <Row>
             <Col md={6}>
-              {cartItems.map(cartObj => (
+              {cartItems.map((cartObj) => (
                 <CartItem
                   cartObj={cartObj}
                   setItems={setItems}
@@ -146,7 +143,7 @@ const CartPage = () => {
                       type="text"
                       placeholder="Contact Person's Name"
                       value={name}
-                      onChange={e => setName(e.target.value)}
+                      onChange={(e) => setName(e.target.value)}
                     />
                   </FormGroup>
                   <FormGroup>
@@ -155,14 +152,14 @@ const CartPage = () => {
                       type="text"
                       placeholder="Contact Number"
                       value={userPhoneNumber}
-                      onChange={e => setUserPhoneNumber(e.target.value)}
+                      onChange={(e) => setUserPhoneNumber(e.target.value)}
                     />
                   </FormGroup>
                   <FormGroup>
                     <Label>Address</Label>
                     <Input
                       value={addressText}
-                      onChange={e => setAddressText(e.target.value)}
+                      onChange={(e) => setAddressText(e.target.value)}
                       type="textarea"
                       placeholder="Landmark, City, Pincode"
                     />

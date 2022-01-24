@@ -11,21 +11,17 @@ import "./ProductCard.scss";
 const ProductCard = ({ product }) => {
   const history = useHistory();
 
-  const {
-    addItemToWishList,
-    isPresentInWishlist,
-    removeItemFromWishList,
-  } = useWishlist();
+  const { addItemToWishList, isPresentInWishlist, removeItemFromWishList } =
+    useWishlist();
 
   const { name, photoUrl, price, productId, rating } = product;
-
   const [isWishlisted, setIsWishlisted] = useState(false);
 
   useEffect(() => {
     setIsWishlisted(isPresentInWishlist(productId));
   }, []);
 
-  const toggleAddToWishlist = e => {
+  const toggleAddToWishlist = (e) => {
     e.stopPropagation();
     if (!isPresentInWishlist(productId)) {
       addItemToWishList(product);

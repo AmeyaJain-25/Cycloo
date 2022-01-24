@@ -25,10 +25,9 @@ const Login = () => {
       "recaptcha-container",
       {
         size: "invisible",
-        callback: response => {
+        callback: (response) => {
           // reCAPTCHA solved, allow signInWithPhoneNumber.
           //   onSignInSubmit();
-          console.log("CAPTCHA SOLVED");
         },
       },
       auth
@@ -43,18 +42,16 @@ const Login = () => {
     let phone = "+91" + phoneNumber;
     const appVerifier = window.recaptchaVerifier;
     signInWithPhoneNumber(auth, phone, appVerifier)
-      .then(confirmationResult => {
+      .then((confirmationResult) => {
         // SMS sent. Prompt user to type the code from the message, then sign the
         // user in with confirmationResult.confirm(code).
         window.confirmationResult = confirmationResult;
-        console.log("CODE SENT", confirmationResult);
         toast.success(`OTP Sent`);
         setCodeSent(true);
         // ...
       })
-      .catch(error => {
+      .catch((error) => {
         // Error; SMS not sent
-        console.log("ERROR: ", error);
         toast.error(`Something went wrong!`);
         setCodeSent(false);
       })
@@ -67,15 +64,13 @@ const Login = () => {
     setLoading(true);
     window.confirmationResult
       .confirm(code)
-      .then(result => {
+      .then((result) => {
         // User signed in successfully.
         const user = result.user;
-        console.log("USER: ", user);
-        auth.currentUser.getIdToken(true).then(idToken => {
+        auth.currentUser.getIdToken(true).then((idToken) => {
           authenticateUser(idToken)
-            .then(res => {
+            .then((res) => {
               toast.success(`Login Success`);
-              console.log("RES: ", res);
               if (location.state === "cart") {
                 return history.push("/cart");
               } else if (location.state === "orders") {
@@ -83,15 +78,12 @@ const Login = () => {
               }
               history.push("/");
             })
-            .catch(err => {
-              console.log("ERR: ", err);
-            })
-            .catch(err => {
+            .catch((err) => {
               console.log("ERR: ", err);
             });
         });
       })
-      .catch(error => {
+      .catch((error) => {
         // User couldn't sign in (bad verification code?)
         console.log("ERROR: ", error);
       })
@@ -121,7 +113,7 @@ const Login = () => {
               <FormGroup>
                 <Input
                   value={phoneNumber}
-                  onChange={e => setPhoneNumber(e.target.value)}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
                   placeholder="Enter Phone Number"
                   className="login-input"
                   disabled={codeSent}
@@ -131,7 +123,7 @@ const Login = () => {
                 <Input
                   value={code}
                   disabled={!codeSent}
-                  onChange={e => setCode(e.target.value)}
+                  onChange={(e) => setCode(e.target.value)}
                   placeholder="Enter OTP"
                   className="login-input"
                 />

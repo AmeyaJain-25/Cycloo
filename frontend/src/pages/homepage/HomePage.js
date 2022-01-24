@@ -21,12 +21,11 @@ const HomePage = () => {
   const fetchAllProducts = () => {
     setLoading(true);
     getAllProducts()
-      .then(res => {
-        console.log("RES:", res);
+      .then((res) => {
         setProducts(res);
         setFilteredPro(res);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log("err: ", err);
       })
       .finally(() => {
@@ -61,7 +60,7 @@ const HomePage = () => {
           <Row>
             {!loading ? (
               filteredPro.length ? (
-                filteredPro.map(product => (
+                filteredPro.map((product) => (
                   <Col lg={4}>
                     <ProductCard key={product.productId} product={product} />
                   </Col>

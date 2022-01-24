@@ -42,7 +42,6 @@ const useCart = () => {
     localStorage.setItem("cart", JSON.stringify(currentCart));
     setCartCount(currentCart.length);
     setCartItems(currentCart);
-    console.log("Added to Cart");
     return "Added to Cart";
   };
   const removeItemFromCart = (uid) => {
