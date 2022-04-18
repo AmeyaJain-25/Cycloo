@@ -50,7 +50,7 @@
 <p align="center">
 <table align="center">
   <tbody><tr>
-    <td align="center"><a href="https://github.com/AmeyaJain-25"><img alt="" src="https://avatars.githubusercontent.com/AmeyaJain-25" width="130px;"><br><sub><b> Ameya Jain </b></sub></a><br><a href="https://github.com/AmeyaJain-25/Cycloo/commits?author=JyotiKumari2" title="Code">🧠🚀👨‍🎓👽 </a></td></a></td>
+    <td align="center"><a href="https://github.com/AmeyaJain-25"><img alt="" src="https://avatars.githubusercontent.com/AmeyaJain-25" width="130px;"><br><sub><b> Ameya Jain </b></sub></a><br><a href="https://github.com/AmeyaJain-25/Cycloo/commits?author=AmeyaJain-25" title="Code">🧠🚀👨‍🎓👽 </a></td></a></td>
     <td align="center"><a href="https://github.com/ShubhamSj07"><img alt="" src="https://avatars.githubusercontent.com/ShubhamSj07" width="130px;"><br><sub><b> Shubham Jadhav </b></sub></a><br><a href="https://github.com/AmeyaJain-25/Cycloo/commits?author=ShubhamSj07" title="Code">🧠👨‍💻🔭❤️ </a></td></a></td>
      <td align="center"><a href="https://github.com/adarsh45"><img alt="" src="https://avatars.githubusercontent.com/adarsh45" width="130px;"><br><sub><b>
 Adarsh Shete  </b></sub></a><br><a href="https://github.com/AmeyaJain-25/Cycloo/commits?author=adarsh45" title="Code">💻📱👨‍💻💥 </a></td></a></td>
